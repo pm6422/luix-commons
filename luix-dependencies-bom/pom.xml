@@ -38,7 +38,7 @@
         <servlet_version>3.1.0</servlet_version>
         <slf4j_version>1.7.30</slf4j_version>
         <springdoc_version>1.6.12</springdoc_version>
-        <tomcat_embed_version>8.5.63</tomcat_embed_version>
+        <tomcat_embed_version>9.0.63</tomcat_embed_version>
         <validation_version>2.0.1.Final</validation_version>
         <junit_version>4.13.2</junit_version>
         <assertj_version>3.22.0</assertj_version>
@@ -52,6 +52,26 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-actuator-autoconfigure</artifactId>
+                <version>${spring_boot_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>${spring_boot_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring_boot_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-commons</artifactId>
+                <version>${spring_boot_version}</version>
+            </dependency>
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-api</artifactId>
@@ -191,6 +211,11 @@
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webmvc-core</artifactId>
                 <version>${springdoc_version}</version>
             </dependency>
             <dependency>

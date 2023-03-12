@@ -8,10 +8,6 @@
     </parent>
     <artifactId>luix-framework</artifactId>
     <name>${project.artifactId}</name>
-    <properties>
-        <java.version>11</java.version>
-        <spring_boot_version>2.7.1</spring_boot_version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>com.luixtech</groupId>
@@ -21,37 +17,31 @@
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
-            <version>9.0.63</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-webmvc-core</artifactId>
-            <version>1.6.11</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-actuator-autoconfigure</artifactId>
-            <version>${spring_boot_version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
-            <version>${spring_boot_version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring_boot_version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
-            <version>2.7.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
