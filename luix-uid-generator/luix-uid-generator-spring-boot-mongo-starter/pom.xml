@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.luixtech</groupId>
-        <artifactId>luix</artifactId>
+        <artifactId>luix-uid-generator</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>luix-uid-generator-spring-boot-mysql-starter</artifactId>
+    <artifactId>luix-uid-generator-spring-boot-mongo-starter</artifactId>
     <name>${project.artifactId}</name>
     <dependencies>
         <dependency>
@@ -15,14 +15,13 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq</artifactId>
-            <version>3.14.15</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
-            <version>2.7.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
             <scope>provided</scope>
         </dependency>
     </dependencies>
