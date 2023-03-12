@@ -6,11 +6,6 @@
 # Full reference is available at:
 # https://docs.spring.io/spring-boot/docs/2.5.5/reference/html/application-properties.html#application-properties
 # ===================================================================
-app:
-  id: luix-uid-generator-usage-demo
-  name: luix-uid-generator-usage-demo
-  version: 1.1.6
-  companyName: LUIX Technology
 management: # Management http server configuration, used by ManagementServerProperties
   endpoints:
     web:
@@ -31,13 +26,13 @@ management: # Management http server configuration, used by ManagementServerProp
       enabled: true
   metrics:
     tags:
-      application: ${app.id}
+      application: ${spring.application.name}
     export:
       prometheus:
         enabled: true
 spring:
   application:
-    name: ${app.id}
+    name: luix-uid-generator-demo
   profiles:
     # The commented value for `active` can be replaced with valid spring profiles to load.
     # Otherwise, it will be filled in by maven when building the WAR file

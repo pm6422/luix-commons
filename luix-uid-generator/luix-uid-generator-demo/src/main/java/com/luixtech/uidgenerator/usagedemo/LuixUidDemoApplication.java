@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @EnableUidGenerator
 @EnableLuixFramework
-public class LuixUidUsageDemoApplication {
+public class LuixUidDemoApplication {
 
     /**
      * Entrance method which used to run the application. Spring profiles can be configured with a program arguments
@@ -20,6 +20,6 @@ public class LuixUidUsageDemoApplication {
         // Disable JOOQ's self-ad message, that message is located in the org.jooq.impl.DefaultRenderContext source file,
         // and it is using the org.jooq.Constants logger.
         System.setProperty("org.jooq.no-logo", "true");
-        SpringApplication.run(LuixUidUsageDemoApplication.class, args);
+        SpringApplication.run(LuixUidDemoApplication.class, args);
     }
 }
