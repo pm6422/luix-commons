@@ -82,7 +82,7 @@ luix:
     api-include-pattern: /api/**
     open-api-include-pattern: /open-api/**
     management-include-pattern: /management/**
-    title: LUI️✘ UID Generator Usage Demo
+    title: LUI️✘ UID Generator Demo
     version: ${app.version}
     terms-of-service-url:
     contact-name: Louis
