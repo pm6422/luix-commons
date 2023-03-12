@@ -1,0 +1,9 @@
+# The file name should be identical to the fully-qualified name of extension interface.
+# The file must be encoded in UTF-8.
+com.luixtech.utilities.masking.strategy.impl.AddressStrategy
+com.luixtech.utilities.masking.strategy.impl.BankCardStrategy
+com.luixtech.utilities.masking.strategy.impl.ChineseNameStrategy
+com.luixtech.utilities.masking.strategy.impl.EmailStrategy
+com.luixtech.utilities.masking.strategy.impl.IdCardStrategy
+com.luixtech.utilities.masking.strategy.impl.LandlinePhoneStrategy
+com.luixtech.utilities.masking.strategy.impl.MobilePhoneStrategy

@@ -1,0 +1,1 @@
+./mvnw -s /Users/louislau/Workspace/infinity-rpc/.mvn/settings.xml -DskipTests clean javadoc:jar deploy -P release
