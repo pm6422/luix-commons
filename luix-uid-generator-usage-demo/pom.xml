@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.luixtech</groupId>
     <artifactId>luix-uid-generator-usage-demo</artifactId>
-    <version>1.2.0</version>
+    <version>${revision}</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <properties>
@@ -17,18 +17,30 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.version>3.6.2</maven.version>
+        <revision>1.2.0</revision>
         <start-class>com.luixtech.uidgenerator.usagedemo.LuixUidUsageDemoApplication</start-class>
     </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>luix</artifactId>
+                <version>${revision}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>com.luixtech</groupId>
             <artifactId>luix-framework</artifactId>
-            <version>1.2.0</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.luixtech</groupId>
             <artifactId>luix-uid-generator-spring-boot-mysql-starter</artifactId>
-            <version>1.2.0</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.turkraft</groupId>
