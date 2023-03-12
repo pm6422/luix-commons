@@ -8,7 +8,7 @@
         <relativePath/>
     </parent>
     <groupId>com.luixtech</groupId>
-    <artifactId>luix-uid-generator-usage-demo</artifactId>
+    <artifactId>luix-uid-generator-demo</artifactId>
     <version>1.2.0</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
