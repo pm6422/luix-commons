@@ -28,7 +28,7 @@
         <module>luix-utilities</module>
         <module>luix-uid-generator-core</module>
         <module>luix-framework</module>
-        <module>luix-uid-generator-spring-boot-starter</module>
+        <module>luix-uid-generator-spring-boot-mysql-starter</module>
         <module>luix-uid-generator-spring-boot-mongo-starter</module>
         <module>luix-uid-generator-usage-demo</module>
     </modules>

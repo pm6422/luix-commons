@@ -27,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>com.luixtech</groupId>
-            <artifactId>luix-uid-generator-spring-boot-starter</artifactId>
+            <artifactId>luix-uid-generator-spring-boot-mysql-starter</artifactId>
             <version>1.2.0</version>
         </dependency>
         <dependency>
