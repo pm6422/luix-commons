@@ -116,6 +116,6 @@ public class LuixProperties {
 
     @Data
     public static class Ribbon {
-        private String[] displayOnActiveProfiles;
+        private List<String> displayOnActiveProfiles;
     }
 }
