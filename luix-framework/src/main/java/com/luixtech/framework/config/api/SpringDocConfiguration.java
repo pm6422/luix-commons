@@ -12,15 +12,18 @@ import org.springdoc.core.customizers.ActuatorOpenApiCustomizer;
 import org.springdoc.core.customizers.ActuatorOperationCustomizer;
 import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springdoc.core.customizers.OperationCustomizer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.nio.ByteBuffer;
 import java.util.List;
 
+import static org.apache.commons.lang3.StringUtils.defaultIfEmpty;
 import static org.springdoc.core.Constants.SPRINGDOC_SHOW_ACTUATOR;
 
 @Slf4j
@@ -37,6 +40,7 @@ public class SpringDocConfiguration {
     static final        String                 MANAGEMENT_TITLE_SUFFIX = "Management API";
     static final        String                 MANAGEMENT_DESCRIPTION  = "Management endpoints documentation";
     private final       LuixProperties.ApiDocs apiDocsProperties;
+    private final       BuildProperties        buildProperties;
     @Value("${spring.application.name}")
     private             String                 appName;
 
@@ -44,8 +48,10 @@ public class SpringDocConfiguration {
         SpringDocUtils.getConfig().replaceWithClass(ByteBuffer.class, String.class);
     }
 
-    public SpringDocConfiguration(LuixProperties applicationProperties) {
+    public SpringDocConfiguration(LuixProperties applicationProperties,
+                                  @Autowired(required = false) BuildProperties buildProperties) {
         this.apiDocsProperties = applicationProperties.getApiDocs();
+        this.buildProperties = buildProperties;
     }
 
     /**
@@ -55,7 +61,7 @@ public class SpringDocConfiguration {
      */
     @Bean
     public OpenApiCustomizer openApiCustomizer() {
-        OpenApiCustomizer openApiCustomizer = new OpenApiCustomizer(this.apiDocsProperties);
+        OpenApiCustomizer openApiCustomizer = new OpenApiCustomizer(this.apiDocsProperties, this.buildProperties);
         log.debug("Initialized OpenApi customizer");
         return openApiCustomizer;
     }
@@ -117,7 +123,7 @@ public class SpringDocConfiguration {
                 .addOpenApiCustomiser(openApi -> openApi.info(new Info()
                         .title(StringUtils.capitalize(appName) + " " + MANAGEMENT_TITLE_SUFFIX)
                         .description(MANAGEMENT_DESCRIPTION)
-                        .version(apiDocsProperties.getVersion())
+                        .version(defaultIfEmpty(buildProperties.getVersion(), apiDocsProperties.getVersion()))
                 ))
                 .addOpenApiCustomiser(actuatorOpenApiCustomizer)
                 .addOperationCustomizer(actuatorCustomizer)
