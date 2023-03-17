@@ -12,6 +12,7 @@ import com.luixtech.framework.config.LuixProperties;
 import com.luixtech.framework.config.api.OpenApiEndpointConfiguration;
 import com.luixtech.framework.config.api.SpringDocConfiguration;
 import com.luixtech.framework.config.info.InfoContributorConfiguration;
+import com.luixtech.framework.config.metrics.LuixMetricsEndpointConfiguration;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -22,7 +23,7 @@ import java.lang.annotation.*;
 @Import({AopLoggingAspect.class, ElapsedTimeLoggingAspect.class, ExceptionTranslatorAdviceAspect.class,
         HttpHeaderCreator.class, MessageCreator.class, PrintAppInfoApplicationRunner.class,
         AsyncConfiguration.class, LocaleConfiguration.class, LuixProperties.class, OpenApiEndpointConfiguration.class,
-        SpringDocConfiguration.class, InfoContributorConfiguration.class})
+        SpringDocConfiguration.class, InfoContributorConfiguration.class, LuixMetricsEndpointConfiguration.class})
 public @interface EnableLuixFramework {
 
 }
