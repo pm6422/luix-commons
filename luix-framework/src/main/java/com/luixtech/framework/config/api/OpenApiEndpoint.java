@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import static org.springdoc.core.Constants.DEFAULT_GROUP_NAME;
 
-@WebEndpoint(id = "openapigroups")
+@WebEndpoint(id = "luixopenapigroups")
 public class OpenApiEndpoint {
     private final SpringDocConfigProperties springDocConfigProperties;
     private final String                    appName;
@@ -22,7 +22,7 @@ public class OpenApiEndpoint {
     }
 
     /**
-     * GET /management/openapigroups
+     * GET /management/luixopenapigroups
      * <p>
      * Give openApi displayed on OpenApi page
      *
