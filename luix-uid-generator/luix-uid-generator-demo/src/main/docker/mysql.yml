@@ -1,7 +1,7 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
 version: '3.8'
 services:
-  luix-mysql:
+  mysql:
     image: mysql:8.0.29
     platform: linux/arm64
     # platform: linux/x86_64 # Intel platform

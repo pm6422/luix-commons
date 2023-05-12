@@ -6,11 +6,11 @@ the [src/main/docker](src/main/docker) folder to launch required third party ser
 For example, to start a mysql database in a docker container, run:
 
 ```
-docker-compose -f luix-uid-generator-usage-demo/src/main/docker/mysql.yml up -d
+docker-compose -f luix-uid-generator/luix-uid-generator-demo/src/main/docker/mysql.yml up -d
 ```
 
 To stop it and remove the container, run:
 
 ```
-docker-compose -f luix-uid-generator-usage-demo/src/main/docker/mysql.yml down
+docker-compose -f luix-uid-generator/luix-uid-generator-demo/src/main/docker/mysql.yml down
 ```
