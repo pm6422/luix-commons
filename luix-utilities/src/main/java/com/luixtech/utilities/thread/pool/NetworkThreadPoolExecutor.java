@@ -1,4 +1,4 @@
-package com.luixtech.utilities.threadpool;
+package com.luixtech.utilities.thread.pool;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
