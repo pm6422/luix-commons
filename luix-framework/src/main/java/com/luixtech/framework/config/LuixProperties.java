@@ -32,6 +32,7 @@ public class LuixProperties {
     private final       AopLogging         aopLogging          = new AopLogging();
     private final       ElapsedTimeLogging elapsedTimeLogging  = new ElapsedTimeLogging();
     private final       Ribbon             ribbon              = new Ribbon();
+    private final       AppInfo            appInfo             = new AppInfo();
 
     @Data
     public static class Lang {
@@ -63,6 +64,7 @@ public class LuixProperties {
         private String   contactName;
         private String   contactUrl;
         private String   contactEmail;
+        private String   contactMobile;
         private String   license;
         private String   licenseUrl;
         private Server[] servers                  = new Server[0];
@@ -117,5 +119,10 @@ public class LuixProperties {
     @Data
     public static class Ribbon {
         private List<String> displayOnActiveProfiles;
+    }
+
+    @Data
+    public static class AppInfo {
+        private boolean printEnabled = true;
     }
 }

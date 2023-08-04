@@ -1,5 +1,6 @@
 package com.luixtech.framework.component;
 
+import com.luixtech.framework.config.LuixProperties;
 import com.luixtech.utilities.network.AddressUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,10 +18,14 @@ import java.nio.charset.Charset;
 @AllArgsConstructor
 @Slf4j
 public class PrintAppInfoApplicationRunner implements ApplicationRunner {
-    private final Environment env;
+    private final Environment    env;
+    private final LuixProperties luixProperties;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        if (!luixProperties.getAppInfo().isPrintEnabled()) {
+            return;
+        }
         String appBanner = StreamUtils.copyToString(new ClassPathResource("config/banner-app.txt").getInputStream(),
                 Charset.defaultCharset());
         log.info(appBanner, env.getProperty("spring.application.name"),
