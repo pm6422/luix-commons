@@ -10,7 +10,7 @@ Luix consists of three main components:
 
 - luix-utilities: Utility classes, like Apache Commons
 - luix-generator: A UID generator, which is used to generate unique ID under distributed environment
-- luix-framework: Web framework, provides common web features like logging, exception handling, etc.
+- luix-web-framework: Web framework, provides common web features like logging, exception handling, etc.
 
 [[requirements]]
 == Requirements

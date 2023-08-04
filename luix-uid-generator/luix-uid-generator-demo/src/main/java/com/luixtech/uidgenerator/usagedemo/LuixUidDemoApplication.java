@@ -1,13 +1,13 @@
 package com.luixtech.uidgenerator.usagedemo;
 
-import com.luixtech.framework.EnableLuixFramework;
+import com.luixtech.framework.EnableLuixWebFramework;
 import com.luixtech.uidgenerator.springboot.config.EnableUidGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableUidGenerator
-@EnableLuixFramework
+@EnableLuixWebFramework
 public class LuixUidDemoApplication {
 
     /**

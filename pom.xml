@@ -25,7 +25,7 @@
         <module>luix-dependencies-bom</module>
         <module>luix-utilities</module>
         <module>luix-uid-generator</module>
-        <module>luix-framework</module>
+        <module>luix-web-framework</module>
     </modules>
     <scm>
         <connection>scm:git:git@github.com:pm6422/luix-uid-generator.git</connection>
