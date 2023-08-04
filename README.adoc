@@ -1,16 +1,16 @@
-= LUI️✘
+= LUI️✘ Commons
 
 [[overview]]
 == Overview
-Luix is a collection of tool and utilities for rapid development.
+Luix Commons is a collection of tool and utilities focused on all aspects of reusable Java components.
 
 [[modules]]
 == Modules
-Luix consists of three main components:
+Luix Commons consists of three main components:
 
 - luix-utilities: Utility classes, like Apache Commons
 - luix-generator: A UID generator, which is used to generate unique ID under distributed environment
-- luix-web-framework: Web framework, provides common web features like logging, exception handling, etc.
+- luix-web-framework: Basic web framework, provides common web features like logging, exception handling, etc.
 
 [[requirements]]
 == Requirements
