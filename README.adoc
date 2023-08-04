@@ -1,0 +1,37 @@
+= LUI️✘
+
+[[overview]]
+== Overview
+Luix is a collection of tool and utilities for rapid development.
+
+[[modules]]
+== Modules
+Luix consists of three main components:
+
+- luix-utilities: Utility classes, like Apache Commons
+- luix-generator: A UID generator, which is used to generate unique ID under distributed environment
+- luix-framework: Web framework, provides common web features like logging, exception handling, etc.
+
+[[requirements]]
+== Requirements
+Before you can build this project, you must install JDK on your machine. You can install JDK by https://sdkman.io/install[SDK Man]. e.g.
+```bash
+sdk install java 11.0.20-tem
+```
+NOTE: Java compatability: JDK 11 or higher
+
+[[dependencies]]
+== Dependencies
+- spring-boot 2.7.1
+
+[[build]]
+== Build
+Run the following command to build the project:
+
+```
+./mvnw clean verify
+```
+
+[[contacts]]
+== Contacts
+- Email: louis@luixtech.com
