@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.luixtech</groupId>
-        <artifactId>luix</artifactId>
+        <artifactId>luix-commons</artifactId>
         <version>${revision}</version>
     </parent>
     <artifactId>luix-uid-generator</artifactId>

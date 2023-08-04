@@ -2,11 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.luixtech</groupId>
-    <artifactId>luix</artifactId>
+    <artifactId>luix-commons</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
-    <name>luix</name>
-    <description>Luix</description>
     <url>https://github.com/pm6422/luix</url>
     <licenses>
         <license>
