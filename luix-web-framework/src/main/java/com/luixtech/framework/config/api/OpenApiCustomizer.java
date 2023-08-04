@@ -33,11 +33,15 @@ public class OpenApiCustomizer implements OpenApiCustomiser, Ordered {
                 .url(apiDocsProperties.getContactUrl())
                 .email(apiDocsProperties.getContactEmail());
 
+        String version = buildProperties == null
+                ? "Unknown" :
+                defaultIfEmpty(buildProperties.getVersion(), apiDocsProperties.getVersion());
+
         openApi.info(new Info()
                 .contact(contact)
                 .title(apiDocsProperties.getTitle())
                 .description(apiDocsProperties.getDescription())
-                .version(defaultIfEmpty(buildProperties.getVersion(), apiDocsProperties.getVersion()))
+                .version(version)
                 .termsOfService(apiDocsProperties.getTermsOfServiceUrl())
                 .license(new License().name(apiDocsProperties.getLicense()).url(apiDocsProperties.getLicenseUrl()))
         );

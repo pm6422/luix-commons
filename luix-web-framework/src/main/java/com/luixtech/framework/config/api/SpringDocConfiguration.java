@@ -118,12 +118,16 @@ public class SpringDocConfiguration {
     @ConditionalOnProperty(SPRINGDOC_SHOW_ACTUATOR)
     public GroupedOpenApi managementGroupedOpenApi(ActuatorOpenApiCustomizer actuatorOpenApiCustomizer,
                                                    ActuatorOperationCustomizer actuatorCustomizer) {
+        String version = buildProperties == null
+                ? "Unknown" :
+                defaultIfEmpty(buildProperties.getVersion(), apiDocsProperties.getVersion());
+
         GroupedOpenApi groupedOpenApi = GroupedOpenApi.builder()
                 .group(MANAGEMENT_GROUP_NAME)
                 .addOpenApiCustomiser(openApi -> openApi.info(new Info()
                         .title(StringUtils.capitalize(appName) + " " + MANAGEMENT_TITLE_SUFFIX)
                         .description(MANAGEMENT_DESCRIPTION)
-                        .version(defaultIfEmpty(buildProperties.getVersion(), apiDocsProperties.getVersion()))
+                        .version(version)
                 ))
                 .addOpenApiCustomiser(actuatorOpenApiCustomizer)
                 .addOperationCustomizer(actuatorCustomizer)
