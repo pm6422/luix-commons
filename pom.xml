@@ -5,6 +5,8 @@
     <artifactId>luix-commons</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
+    <name>luix-commons</name>
+    <description>Luix Commons is a collection of tool and utilities focused on all aspects of reusable Java components</description>
     <url>https://github.com/pm6422/luix</url>
     <licenses>
         <license>
