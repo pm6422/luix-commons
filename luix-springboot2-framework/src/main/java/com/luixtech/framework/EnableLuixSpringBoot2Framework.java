@@ -24,6 +24,6 @@ import java.lang.annotation.*;
         HttpHeaderCreator.class, MessageCreator.class, PrintAppInfoApplicationRunner.class,
         AsyncConfiguration.class, LocaleConfiguration.class, LuixProperties.class, OpenApiEndpointConfiguration.class,
         SpringDocConfiguration.class, InfoContributorConfiguration.class, LuixMetricsEndpointConfiguration.class})
-public @interface EnableLuixWebFramework {
+public @interface EnableLuixSpringBoot2Framework {
 
 }
