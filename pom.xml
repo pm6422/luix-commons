@@ -28,6 +28,7 @@
         <module>luix-utilities</module>
         <module>luix-uid-generator</module>
         <module>luix-springboot2-framework</module>
+        <module>luix-springboot3-framework</module>
     </modules>
     <scm>
         <connection>scm:git:git@github.com:pm6422/luix-uid-generator.git</connection>
