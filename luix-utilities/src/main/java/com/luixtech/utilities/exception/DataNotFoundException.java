@@ -1,4 +1,4 @@
-package com.luixtech.springbootframework.exception;
+package com.luixtech.utilities.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
