@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Optional;
+
 @Configuration
 @ConditionalOnProperty("springdoc.api-docs.enabled")
 public class OpenApiEndpointConfiguration {
@@ -22,7 +24,9 @@ public class OpenApiEndpointConfiguration {
      */
     @Bean
     @ConditionalOnAvailableEndpoint
-    public OpenApiEndpoint openApiEndpoint(SpringDocConfigProperties springDocConfigProperties) {
-        return new OpenApiEndpoint(springDocConfigProperties, appName);
+    public OpenApiEndpoint openApiEndpoint(Optional<SpringDocConfigProperties> springDocConfigProperties) {
+        return springDocConfigProperties
+                .map(docConfigProperties -> new OpenApiEndpoint(docConfigProperties, appName))
+                .orElse(null);
     }
 }
