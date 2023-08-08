@@ -11,6 +11,8 @@ import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.core.Ordered;
 
+import java.util.Optional;
+
 import static org.apache.commons.lang3.StringUtils.defaultIfEmpty;
 
 /**
@@ -18,11 +20,11 @@ import static org.apache.commons.lang3.StringUtils.defaultIfEmpty;
  */
 @Getter
 public class OpenApiCustomizer implements OpenApiCustomiser, Ordered {
-    private final int                    order = 0;
-    private final LuixProperties.ApiDocs apiDocsProperties;
-    private final BuildProperties        buildProperties;
+    private final int                       order = 0;
+    private final LuixProperties.ApiDocs    apiDocsProperties;
+    private final Optional<BuildProperties> buildProperties;
 
-    public OpenApiCustomizer(LuixProperties.ApiDocs apiDocsProperties, BuildProperties buildProperties) {
+    public OpenApiCustomizer(LuixProperties.ApiDocs apiDocsProperties, Optional<BuildProperties> buildProperties) {
         this.apiDocsProperties = apiDocsProperties;
         this.buildProperties = buildProperties;
     }
@@ -33,9 +35,9 @@ public class OpenApiCustomizer implements OpenApiCustomiser, Ordered {
                 .url(apiDocsProperties.getContactUrl())
                 .email(apiDocsProperties.getContactEmail());
 
-        String version = buildProperties == null
-                ? "Unknown" :
-                defaultIfEmpty(buildProperties.getVersion(), apiDocsProperties.getVersion());
+        String version = buildProperties.isPresent()
+                ? defaultIfEmpty(buildProperties.get().getVersion(), apiDocsProperties.getVersion())
+                : "Unknown";
 
         openApi.info(new Info()
                 .contact(contact)

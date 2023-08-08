@@ -12,7 +12,6 @@ import org.springdoc.core.customizers.ActuatorOpenApiCustomizer;
 import org.springdoc.core.customizers.ActuatorOperationCustomizer;
 import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springdoc.core.customizers.OperationCustomizer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -22,6 +21,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.nio.ByteBuffer;
 import java.util.List;
+import java.util.Optional;
 
 import static org.apache.commons.lang3.StringUtils.defaultIfEmpty;
 import static org.springdoc.core.Constants.SPRINGDOC_SHOW_ACTUATOR;
@@ -35,22 +35,21 @@ import static org.springdoc.core.Constants.SPRINGDOC_SHOW_ACTUATOR;
         scheme = "basic"
 )
 public class SpringDocConfiguration {
-    public static final String                 AUTH                    = "basicAuth";
-    public static final String                 MANAGEMENT_GROUP_NAME   = "management";
-    static final        String                 MANAGEMENT_TITLE_SUFFIX = "Management API";
-    static final        String                 MANAGEMENT_DESCRIPTION  = "Management endpoints documentation";
-    private final       LuixProperties.ApiDocs apiDocsProperties;
-    private final       BuildProperties        buildProperties;
+    public static final String                    AUTH                    = "basicAuth";
+    public static final String                    MANAGEMENT_GROUP_NAME   = "management";
+    static final        String                    MANAGEMENT_TITLE_SUFFIX = "Management API";
+    static final        String                    MANAGEMENT_DESCRIPTION  = "Management endpoints documentation";
+    private final       LuixProperties.ApiDocs    apiDocsProperties;
+    private final       Optional<BuildProperties> buildProperties;
     @Value("${spring.application.name}")
-    private             String                 appName;
+    private             String                    appName;
 
     static {
         SpringDocUtils.getConfig().replaceWithClass(ByteBuffer.class, String.class);
     }
 
-    public SpringDocConfiguration(LuixProperties applicationProperties,
-                                  @Autowired(required = false) BuildProperties buildProperties) {
-        this.apiDocsProperties = applicationProperties.getApiDocs();
+    public SpringDocConfiguration(LuixProperties luixProperties, Optional<BuildProperties> buildProperties) {
+        this.apiDocsProperties = luixProperties.getApiDocs();
         this.buildProperties = buildProperties;
     }
 
@@ -118,9 +117,9 @@ public class SpringDocConfiguration {
     @ConditionalOnProperty(SPRINGDOC_SHOW_ACTUATOR)
     public GroupedOpenApi managementGroupedOpenApi(ActuatorOpenApiCustomizer actuatorOpenApiCustomizer,
                                                    ActuatorOperationCustomizer actuatorCustomizer) {
-        String version = buildProperties == null
-                ? "Unknown" :
-                defaultIfEmpty(buildProperties.getVersion(), apiDocsProperties.getVersion());
+        String version = buildProperties.isPresent()
+                ? defaultIfEmpty(buildProperties.get().getVersion(), apiDocsProperties.getVersion())
+                : "Unknown";
 
         GroupedOpenApi groupedOpenApi = GroupedOpenApi.builder()
                 .group(MANAGEMENT_GROUP_NAME)
