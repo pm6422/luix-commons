@@ -34,7 +34,7 @@
         <lombok_version>1.18.24</lombok_version>
         <maven_flatten_pluggin_version>1.1.0</maven_flatten_pluggin_version>
         <maven_version>3.2.1</maven_version>
-        <revision>1.2.1.5</revision>
+        <revision>1.2.1.6</revision>
         <servlet_version>3.1.0</servlet_version>
         <slf4j_version>1.7.30</slf4j_version>
         <springdoc_version>1.6.12</springdoc_version>
