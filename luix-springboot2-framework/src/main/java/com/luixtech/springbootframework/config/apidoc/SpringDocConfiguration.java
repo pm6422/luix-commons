@@ -38,8 +38,6 @@ public class SpringDocConfiguration {
     public static final String                    MANAGEMENT_GROUP_NAME = "management";
     private final       LuixProperties.ApiDocs    apiDocsProperties;
     private final       Optional<BuildProperties> buildProperties;
-    @Value("${spring.application.name}")
-    private             String                    appName;
 
     static {
         SpringDocUtils.getConfig().replaceWithClass(ByteBuffer.class, String.class);
