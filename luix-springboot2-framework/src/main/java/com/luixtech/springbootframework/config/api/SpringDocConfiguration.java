@@ -3,11 +3,9 @@ package com.luixtech.springbootframework.config.api;
 import com.luixtech.springbootframework.config.LuixProperties;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
-import io.swagger.v3.oas.models.info.Info;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.GroupedOpenApi;
 import org.springdoc.core.SpringDocUtils;
-import org.springdoc.core.customizers.ActuatorOpenApiCustomizer;
 import org.springdoc.core.customizers.ActuatorOperationCustomizer;
 import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springdoc.core.customizers.OperationCustomizer;
@@ -58,8 +56,8 @@ public class SpringDocConfiguration {
      * @return the Customizer
      */
     @Bean
-    public ApiCustomizer apiCustomizer() {
-        ApiCustomizer customizer = new ApiCustomizer(this.apiDocsProperties,
+    public NamedApiCustomizer apiCustomizer() {
+        NamedApiCustomizer customizer = new NamedApiCustomizer(this.apiDocsProperties,
                 "api-customizer", apiDocsProperties.getApiTitle(),
                 apiDocsProperties.getApiDescription(), getVersion());
         log.debug("Initialized Api customizer");
@@ -72,8 +70,8 @@ public class SpringDocConfiguration {
      * @return the Customizer
      */
     @Bean
-    public ApiCustomizer openApiCustomizer() {
-        ApiCustomizer customizer = new ApiCustomizer(this.apiDocsProperties,
+    public NamedApiCustomizer openApiCustomizer() {
+        NamedApiCustomizer customizer = new NamedApiCustomizer(this.apiDocsProperties,
                 "open-api-customizer", apiDocsProperties.getOpenApiTitle(),
                 apiDocsProperties.getOpenApiDescription(), getVersion());
         return customizer;
@@ -85,8 +83,8 @@ public class SpringDocConfiguration {
      * @return the Customizer
      */
     @Bean
-    public ApiCustomizer managementCustomizer() {
-        ApiCustomizer customizer = new ApiCustomizer(this.apiDocsProperties,
+    public NamedApiCustomizer managementCustomizer() {
+        NamedApiCustomizer customizer = new NamedApiCustomizer(this.apiDocsProperties,
                 "management-customizer", apiDocsProperties.getManagementTitle(),
                 apiDocsProperties.getManagementDescription(), getVersion());
         return customizer;
@@ -105,7 +103,8 @@ public class SpringDocConfiguration {
                 .pathsToMatch(apiDocsProperties.getApiIncludePattern());
 
         openApiCustomizers.stream()
-                .filter(customizer -> customizer.toString().equals("api-customizer"))
+                .filter(customizer -> customizer instanceof NamedApiCustomizer
+                        && ((NamedApiCustomizer) customizer).getName().equals("api-customizer"))
                 .forEach(builder::addOpenApiCustomiser);
         operationCustomizers.stream()
                 .filter(customizer -> !(customizer instanceof ActuatorOperationCustomizer))
@@ -127,7 +126,8 @@ public class SpringDocConfiguration {
                 .pathsToMatch(apiDocsProperties.getOpenApiIncludePattern());
 
         openApiCustomizers.stream()
-                .filter(customizer -> customizer.toString().equals("open-api-customizer"))
+                .filter(customizer -> customizer instanceof NamedApiCustomizer
+                        && ((NamedApiCustomizer) customizer).getName().equals("open-api-customizer"))
                 .forEach(builder::addOpenApiCustomiser);
         operationCustomizers.stream()
                 .filter(customizer -> !(customizer instanceof ActuatorOperationCustomizer))
@@ -151,7 +151,8 @@ public class SpringDocConfiguration {
                 .pathsToMatch(apiDocsProperties.getManagementIncludePattern());
 
         openApiCustomizers.stream()
-                .filter(customizer -> customizer.toString().equals("management-customizer"))
+                .filter(customizer -> customizer instanceof NamedApiCustomizer
+                        && ((NamedApiCustomizer) customizer).getName().equals("management-customizer"))
                 .forEach(builder::addOpenApiCustomiser);
         operationCustomizers.stream()
                 .filter(customizer -> !(customizer instanceof ActuatorOperationCustomizer))

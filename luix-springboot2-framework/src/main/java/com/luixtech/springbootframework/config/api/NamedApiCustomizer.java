@@ -14,7 +14,7 @@ import org.springframework.core.Ordered;
  * An Api customizer to set up {@link OpenAPI}
  */
 @Getter
-public class ApiCustomizer implements OpenApiCustomiser, Ordered {
+public class NamedApiCustomizer implements OpenApiCustomiser, Ordered {
     private final int                    order = 0;
     private final LuixProperties.ApiDocs apiDocsProperties;
     private final String                 name;
@@ -22,11 +22,11 @@ public class ApiCustomizer implements OpenApiCustomiser, Ordered {
     private final String                 description;
     private final String                 version;
 
-    public ApiCustomizer(LuixProperties.ApiDocs apiDocsProperties,
-                         String name,
-                         String title,
-                         String description,
-                         String version) {
+    public NamedApiCustomizer(LuixProperties.ApiDocs apiDocsProperties,
+                              String name,
+                              String title,
+                              String description,
+                              String version) {
         this.apiDocsProperties = apiDocsProperties;
         this.name = name;
         this.title = title;
@@ -52,10 +52,5 @@ public class ApiCustomizer implements OpenApiCustomiser, Ordered {
         for (LuixProperties.ApiDocs.Server server : apiDocsProperties.getServers()) {
             openApi.addServersItem(new Server().url(server.getUrl()).description(server.getDescription()));
         }
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }
