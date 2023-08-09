@@ -137,7 +137,7 @@ public class SpringDocConfiguration {
     }
 
     /**
-     * api group configuration.
+     * management group configuration.
      *
      * @return the GroupedOpenApi configuration
      */
