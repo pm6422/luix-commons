@@ -10,12 +10,9 @@
     <name>${project.artifactId}</name>
     <dependencies>
         <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
+            <groupId>com.luixtech</groupId>
+            <artifactId>luix-uid-generator-core</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
@@ -26,14 +23,17 @@
             <artifactId>micrometer-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.luixtech</groupId>
-            <artifactId>luix-uid-generator-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
