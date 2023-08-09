@@ -8,23 +8,30 @@ import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;
 import lombok.Getter;
 import org.springdoc.core.customizers.OpenApiCustomiser;
-import org.springframework.boot.info.BuildProperties;
 import org.springframework.core.Ordered;
 
-import static org.apache.commons.lang3.StringUtils.defaultIfEmpty;
-
 /**
- * A OpenApi customizer to set up {@link OpenAPI}
+ * An Api customizer to set up {@link OpenAPI}
  */
 @Getter
-public class OpenApiCustomizer implements OpenApiCustomiser, Ordered {
+public class ApiCustomizer implements OpenApiCustomiser, Ordered {
     private final int                    order = 0;
     private final LuixProperties.ApiDocs apiDocsProperties;
-    private final BuildProperties        buildProperties;
+    private final String                 name;
+    private final String                 title;
+    private final String                 description;
+    private final String                 version;
 
-    public OpenApiCustomizer(LuixProperties.ApiDocs apiDocsProperties, BuildProperties buildProperties) {
+    public ApiCustomizer(LuixProperties.ApiDocs apiDocsProperties,
+                         String name,
+                         String title,
+                         String description,
+                         String version) {
         this.apiDocsProperties = apiDocsProperties;
-        this.buildProperties = buildProperties;
+        this.name = name;
+        this.title = title;
+        this.description = description;
+        this.version = version;
     }
 
     public void customise(OpenAPI openApi) {
@@ -33,14 +40,10 @@ public class OpenApiCustomizer implements OpenApiCustomiser, Ordered {
                 .url(apiDocsProperties.getContactUrl())
                 .email(apiDocsProperties.getContactEmail());
 
-        String version = buildProperties == null
-                ? "Unknown" :
-                defaultIfEmpty(buildProperties.getVersion(), apiDocsProperties.getVersion());
-
         openApi.info(new Info()
                 .contact(contact)
-                .title(apiDocsProperties.getTitle())
-                .description(apiDocsProperties.getDescription())
+                .title(title)
+                .description(description)
                 .version(version)
                 .termsOfService(apiDocsProperties.getTermsOfServiceUrl())
                 .license(new License().name(apiDocsProperties.getLicense()).url(apiDocsProperties.getLicenseUrl()))
@@ -49,5 +52,10 @@ public class OpenApiCustomizer implements OpenApiCustomiser, Ordered {
         for (LuixProperties.ApiDocs.Server server : apiDocsProperties.getServers()) {
             openApi.addServersItem(new Server().url(server.getUrl()).description(server.getDescription()));
         }
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

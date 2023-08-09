@@ -5,14 +5,12 @@ import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.models.info.Info;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springdoc.core.GroupedOpenApi;
 import org.springdoc.core.SpringDocUtils;
 import org.springdoc.core.customizers.ActuatorOpenApiCustomizer;
 import org.springdoc.core.customizers.ActuatorOperationCustomizer;
 import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springdoc.core.customizers.OperationCustomizer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -22,6 +20,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.nio.ByteBuffer;
 import java.util.List;
+import java.util.Optional;
 
 import static org.apache.commons.lang3.StringUtils.defaultIfEmpty;
 import static org.springdoc.core.Constants.SPRINGDOC_SHOW_ACTUATOR;
@@ -35,23 +34,36 @@ import static org.springdoc.core.Constants.SPRINGDOC_SHOW_ACTUATOR;
         scheme = "basic"
 )
 public class SpringDocConfiguration {
-    public static final String                 AUTH                    = "basicAuth";
-    public static final String                 MANAGEMENT_GROUP_NAME   = "management";
-    static final        String                 MANAGEMENT_TITLE_SUFFIX = "Management API";
-    static final        String                 MANAGEMENT_DESCRIPTION  = "Management endpoints documentation";
-    private final       LuixProperties.ApiDocs apiDocsProperties;
-    private final       BuildProperties        buildProperties;
+    public static final String                    AUTH                  = "basicAuth";
+    public static final String                    API_GROUP_NAME        = "api";
+    public static final String                    OPEN_API_GROUP_NAME   = "open-api";
+    public static final String                    MANAGEMENT_GROUP_NAME = "management";
+    private final       LuixProperties.ApiDocs    apiDocsProperties;
+    private final       Optional<BuildProperties> buildProperties;
     @Value("${spring.application.name}")
-    private             String                 appName;
+    private             String                    appName;
 
     static {
         SpringDocUtils.getConfig().replaceWithClass(ByteBuffer.class, String.class);
     }
 
-    public SpringDocConfiguration(LuixProperties applicationProperties,
-                                  @Autowired(required = false) BuildProperties buildProperties) {
-        this.apiDocsProperties = applicationProperties.getApiDocs();
+    public SpringDocConfiguration(LuixProperties luixProperties, Optional<BuildProperties> buildProperties) {
+        this.apiDocsProperties = luixProperties.getApiDocs();
         this.buildProperties = buildProperties;
+    }
+
+    /**
+     * Api Customizer
+     *
+     * @return the Customizer
+     */
+    @Bean
+    public ApiCustomizer apiCustomizer() {
+        ApiCustomizer customizer = new ApiCustomizer(this.apiDocsProperties,
+                "api-customizer", apiDocsProperties.getApiTitle(),
+                apiDocsProperties.getApiDescription(), getVersion());
+        log.debug("Initialized Api customizer");
+        return customizer;
     }
 
     /**
@@ -60,10 +72,24 @@ public class SpringDocConfiguration {
      * @return the Customizer
      */
     @Bean
-    public OpenApiCustomizer openApiCustomizer() {
-        OpenApiCustomizer openApiCustomizer = new OpenApiCustomizer(this.apiDocsProperties, this.buildProperties);
-        log.debug("Initialized OpenApi customizer");
-        return openApiCustomizer;
+    public ApiCustomizer openApiCustomizer() {
+        ApiCustomizer customizer = new ApiCustomizer(this.apiDocsProperties,
+                "open-api-customizer", apiDocsProperties.getOpenApiTitle(),
+                apiDocsProperties.getOpenApiDescription(), getVersion());
+        return customizer;
+    }
+
+    /**
+     * Management Customizer
+     *
+     * @return the Customizer
+     */
+    @Bean
+    public ApiCustomizer managementCustomizer() {
+        ApiCustomizer customizer = new ApiCustomizer(this.apiDocsProperties,
+                "management-customizer", apiDocsProperties.getManagementTitle(),
+                apiDocsProperties.getManagementDescription(), getVersion());
+        return customizer;
     }
 
     /**
@@ -75,10 +101,11 @@ public class SpringDocConfiguration {
     public GroupedOpenApi apiGroup(List<OpenApiCustomiser> openApiCustomizers,
                                    List<OperationCustomizer> operationCustomizers) {
         GroupedOpenApi.Builder builder = GroupedOpenApi.builder()
-                .group("api")
+                .group(API_GROUP_NAME)
                 .pathsToMatch(apiDocsProperties.getApiIncludePattern());
+
         openApiCustomizers.stream()
-                .filter(customizer -> !(customizer instanceof ActuatorOpenApiCustomizer))
+                .filter(customizer -> customizer.toString().equals("api-customizer"))
                 .forEach(builder::addOpenApiCustomiser);
         operationCustomizers.stream()
                 .filter(customizer -> !(customizer instanceof ActuatorOperationCustomizer))
@@ -96,10 +123,11 @@ public class SpringDocConfiguration {
     public GroupedOpenApi openApiGroup(List<OpenApiCustomiser> openApiCustomizers,
                                        List<OperationCustomizer> operationCustomizers) {
         GroupedOpenApi.Builder builder = GroupedOpenApi.builder()
-                .group("open-api")
+                .group(OPEN_API_GROUP_NAME)
                 .pathsToMatch(apiDocsProperties.getOpenApiIncludePattern());
+
         openApiCustomizers.stream()
-                .filter(customizer -> !(customizer instanceof ActuatorOpenApiCustomizer))
+                .filter(customizer -> customizer.toString().equals("open-api-customizer"))
                 .forEach(builder::addOpenApiCustomiser);
         operationCustomizers.stream()
                 .filter(customizer -> !(customizer instanceof ActuatorOperationCustomizer))
@@ -109,31 +137,32 @@ public class SpringDocConfiguration {
     }
 
     /**
-     * OpenApi management group configuration for the management endpoints (actuator) OpenAPI docs.
+     * api group configuration.
      *
      * @return the GroupedOpenApi configuration
      */
     @Bean
     @ConditionalOnClass(name = "org.springframework.boot.actuate.autoconfigure.web.server.ManagementServerProperties")
     @ConditionalOnProperty(SPRINGDOC_SHOW_ACTUATOR)
-    public GroupedOpenApi managementGroupedOpenApi(ActuatorOpenApiCustomizer actuatorOpenApiCustomizer,
-                                                   ActuatorOperationCustomizer actuatorCustomizer) {
-        String version = buildProperties == null
-                ? "Unknown" :
-                defaultIfEmpty(buildProperties.getVersion(), apiDocsProperties.getVersion());
-
-        GroupedOpenApi groupedOpenApi = GroupedOpenApi.builder()
+    public GroupedOpenApi managementGroupedOpenApi(List<OpenApiCustomiser> openApiCustomizers,
+                                                   List<OperationCustomizer> operationCustomizers) {
+        GroupedOpenApi.Builder builder = GroupedOpenApi.builder()
                 .group(MANAGEMENT_GROUP_NAME)
-                .addOpenApiCustomiser(openApi -> openApi.info(new Info()
-                        .title(StringUtils.capitalize(appName) + " " + MANAGEMENT_TITLE_SUFFIX)
-                        .description(MANAGEMENT_DESCRIPTION)
-                        .version(version)
-                ))
-                .addOpenApiCustomiser(actuatorOpenApiCustomizer)
-                .addOperationCustomizer(actuatorCustomizer)
-                .pathsToMatch(apiDocsProperties.getManagementIncludePattern())
-                .build();
+                .pathsToMatch(apiDocsProperties.getManagementIncludePattern());
+
+        openApiCustomizers.stream()
+                .filter(customizer -> customizer.toString().equals("management-customizer"))
+                .forEach(builder::addOpenApiCustomiser);
+        operationCustomizers.stream()
+                .filter(customizer -> !(customizer instanceof ActuatorOperationCustomizer))
+                .forEach(builder::addOperationCustomizer);
         log.debug("Initialized management group");
-        return groupedOpenApi;
+        return builder.build();
+    }
+
+    private String getVersion() {
+        return buildProperties.isPresent()
+                ? defaultIfEmpty(buildProperties.get().getVersion(), apiDocsProperties.getVersion())
+                : "Unknown";
     }
 }

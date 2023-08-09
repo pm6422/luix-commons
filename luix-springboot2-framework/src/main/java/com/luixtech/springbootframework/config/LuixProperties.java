@@ -57,8 +57,12 @@ public class LuixProperties {
         private String   apiIncludePattern        = "/api/**";
         private String   openApiIncludePattern    = "/open-api/**";
         private String   managementIncludePattern = "/management/**";
-        private String   title;
-        private String   description              = "API documentation";
+        private String   apiTitle;
+        private String   apiDescription           = "API documentation";
+        private String   openApiTitle;
+        private String   openApiDescription       = "OpenAPI documentation";
+        private String   managementTitle;
+        private String   managementDescription    = "Management documentation";
         private String   version;
         private String   termsOfServiceUrl;
         private String   contactName;
