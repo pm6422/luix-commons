@@ -1,4 +1,4 @@
-package com.luixtech.springbootframework.config.api;
+package com.luixtech.springbootframework.config.apidoc;
 
 import org.springdoc.core.SpringDocConfigProperties;
 import org.springframework.beans.factory.annotation.Value;

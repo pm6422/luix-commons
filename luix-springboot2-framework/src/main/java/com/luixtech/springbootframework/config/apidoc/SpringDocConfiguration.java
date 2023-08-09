@@ -1,4 +1,4 @@
-package com.luixtech.springbootframework.config.api;
+package com.luixtech.springbootframework.config.apidoc;
 
 import com.luixtech.springbootframework.config.LuixProperties;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
