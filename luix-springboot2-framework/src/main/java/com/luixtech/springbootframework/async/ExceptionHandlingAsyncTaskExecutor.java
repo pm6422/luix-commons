@@ -6,7 +6,6 @@ import org.slf4j.MDC;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.task.AsyncTaskExecutor;
-import org.springframework.lang.NonNull;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -25,13 +24,13 @@ public class ExceptionHandlingAsyncTaskExecutor implements AsyncTaskExecutor, In
     }
 
     @Override
-    public void execute(@NonNull Runnable task) {
+    public void execute(Runnable task) {
         executor.execute(createWrappedRunnable(task, MDC.getCopyOfContextMap()));
     }
 
     @Deprecated
     @Override
-    public void execute(@NonNull Runnable task, long startTimeout) {
+    public void execute(Runnable task, long startTimeout) {
         executor.execute(createWrappedRunnable(task, MDC.getCopyOfContextMap()), startTimeout);
     }
 
@@ -67,14 +66,12 @@ public class ExceptionHandlingAsyncTaskExecutor implements AsyncTaskExecutor, In
     }
 
     @Override
-    @NonNull
-    public Future<?> submit(@NonNull Runnable task) {
+    public Future<?> submit(Runnable task) {
         return executor.submit(createWrappedRunnable(task, MDC.getCopyOfContextMap()));
     }
 
     @Override
-    @NonNull
-    public <T> Future<T> submit(@NonNull Callable<T> task) {
+    public <T> Future<T> submit(Callable<T> task) {
         return executor.submit(createCallable(task, MDC.getCopyOfContextMap()));
     }
 

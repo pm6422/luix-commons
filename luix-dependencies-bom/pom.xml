@@ -114,6 +114,21 @@
                 <version>${dropwizard_metrics_version}</version>
             </dependency>
             <dependency>
+                <groupId>io.dropwizard.metrics</groupId>
+                <artifactId>metrics-graphite</artifactId>
+                <version>${dropwizard_metrics_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.dropwizard.metrics</groupId>
+                <artifactId>metrics-servlet</artifactId>
+                <version>${dropwizard_metrics_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.dropwizard.metrics</groupId>
+                <artifactId>metrics-servlets</artifactId>
+                <version>${dropwizard_metrics_version}</version>
+            </dependency>
+            <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-api</artifactId>
                 <version>${jjwt_version}</version>
