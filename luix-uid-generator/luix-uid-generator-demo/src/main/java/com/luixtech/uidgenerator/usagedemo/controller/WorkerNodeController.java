@@ -30,7 +30,7 @@ public class WorkerNodeController {
 
     @GetMapping(value = "/api/worker-node/query")
     public Page<IdGeneratorWorkerNode> query(@Parameter(in = ParameterIn.QUERY, name = "filter", description = "query criteria",
-            schema = @Schema(type = "string", defaultValue = "(id:1 and appId:'luix-uid-generator-usage-demo') or (id > 1)"))
+            schema = @Schema(type = "string", defaultValue = "(id:1 and appId:'luix-uid-generator-demo') or (id > 1)"))
                                              @Filter Specification<IdGeneratorWorkerNode> spec,
                                              @ParameterObject Pageable pageable) {
         return idGeneratorWorkerNodeRepository.findAll(spec, pageable);
