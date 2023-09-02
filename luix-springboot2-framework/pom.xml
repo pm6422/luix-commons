@@ -8,6 +8,7 @@
     </parent>
     <artifactId>luix-springboot2-framework</artifactId>
     <name>${project.artifactId}</name>
+    <description>Luix SpringBoot 2 framework</description>
     <dependencies>
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>

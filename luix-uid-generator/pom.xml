@@ -9,6 +9,7 @@
     <artifactId>luix-uid-generator</artifactId>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
+    <description>Luix UID Generator</description>
     <modules>
         <module>luix-uid-generator-core</module>
         <module>luix-uid-generator-spring-boot-mysql-starter</module>

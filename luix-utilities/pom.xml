@@ -8,6 +8,7 @@
     </parent>
     <artifactId>luix-utilities</artifactId>
     <name>${project.artifactId}</name>
+    <description>Luix utilities</description>
     <dependencies>
         <dependency>
             <groupId>com.alibaba</groupId>
