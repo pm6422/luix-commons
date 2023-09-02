@@ -30,9 +30,9 @@
         <module>luix-springboot2-framework</module>
     </modules>
     <scm>
-        <connection>scm:git:git@github.com:pm6422/luix-uid-generator.git</connection>
-        <developerConnection>scm:git:git@github.com:pm6422/luix-uid-generator.git</developerConnection>
-        <url>https://github.com/pm6422/luix-uid-generator/tree/main</url>
+        <connection>scm:git:git@github.com:pm6422/luix-commons.git</connection>
+        <developerConnection>scm:git:git@github.com:pm6422/luix-commons.git</developerConnection>
+        <url>https://github.com/pm6422/luix-commons/tree/main</url>
     </scm>
     <distributionManagement>
         <repository>
