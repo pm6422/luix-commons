@@ -13,6 +13,7 @@ management: # Management http server configuration, used by ManagementServerProp
       exposure:
         include:
           - configprops
+          - info
           - health
           - metrics
           - prometheus
@@ -94,3 +95,6 @@ luix:
     enabled: true
   elapsed-time-logging:
     enabled: true
+  ribbon:
+    # comma separated list of profiles to show a ribbon on the GUI
+    display-on-active-profiles: test
