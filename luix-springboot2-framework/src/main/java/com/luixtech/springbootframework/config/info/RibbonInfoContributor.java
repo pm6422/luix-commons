@@ -46,7 +46,7 @@ public class RibbonInfoContributor implements InfoContributor {
      */
     @Override
     public void contribute(Info.Builder builder) {
-        builder.withDetail("ribbon-enabled", ribbonEnabled);
-        builder.withDetail("ribbon-profile", ribbonProfile);
+        builder.withDetail("ribbonEnabled", ribbonEnabled);
+        builder.withDetail("ribbonProfile", ribbonProfile);
     }
 }
