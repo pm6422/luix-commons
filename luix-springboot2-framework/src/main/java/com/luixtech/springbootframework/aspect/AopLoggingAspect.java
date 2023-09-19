@@ -1,6 +1,6 @@
 package com.luixtech.springbootframework.aspect;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.alibaba.fastjson2.JSON;
 import com.luixtech.springbootframework.config.LuixProperties;
 import com.luixtech.springbootframework.utils.TraceIdUtils;
 import lombok.AllArgsConstructor;
@@ -89,7 +89,7 @@ public class AopLoggingAspect {
             String argVal = UNKNOWN_ARG_VAL;
             if (isValidArgument(arguments[i])) {
                 try {
-                    argVal = new ObjectMapper().writeValueAsString(arguments[i]);
+                    argVal = JSON.toJSONString(arguments[i]);
                 } catch (Exception ex) {
                     log.warn("Failed to serialize argument!");
                 }
