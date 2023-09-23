@@ -6,13 +6,14 @@ import org.springframework.http.MediaType;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
 /**
+ * A server-sent event is when a web page automatically gets updates from a server.
  * Refer to <a href="https://juejin.cn/post/7122014462181113887">WEB实时消息推送7种方案</a>
  */
 @Slf4j
@@ -47,77 +48,100 @@ public class SseEmitterUtils {
     }
 
     /**
-     * Send message to the specified connected user
+     * Push message to the specified connected user
      *
      * @param userId  user ID
      * @param message message
+     * @return failed user ID
      */
-    public static void sendUserMessage(String userId, String message) {
+    public static String pushUserMessage(String userId, String message) {
         if (!USER_EMITTER_CACHE.containsKey(userId)) {
-            return;
+            return null;
         }
         try {
             USER_EMITTER_CACHE.get(userId).send(message);
         } catch (IOException e) {
-            log.error("Failed to send message to user ID: " + userId, e);
+            log.error("Failed to push message to user: " + userId, e);
             removeUser(userId);
+            return userId;
         }
+        return null;
     }
 
     /**
-     * Send message to the specified connected users
+     * Push message to the specified connected users
      *
      * @param userIds users IDs
      * @param message message
+     * @return failed user IDs
      */
-    public static void sendUsersMessages(Set<String> userIds, String message) {
-        userIds.forEach(userId -> sendUserMessage(userId, message));
+    public static Set<String> pushUsersMessages(Set<String> userIds, String message) {
+        Set<String> failedUserIds = new HashSet<>();
+        userIds.forEach(userId -> {
+            String failedUserId = pushUserMessage(userId, message);
+            if (failedUserId != null) {
+                failedUserIds.add(failedUserId);
+            }
+        });
+        return failedUserIds;
     }
 
     /**
-     * Send message to the connected users under the same group
+     * Push message to the connected users under the same group
      *
      * @param groupId group ID
      * @param message message
+     * @return failed user IDs
      */
-    public static void sendGroupMessages(String groupId, String message) {
+    public static Set<String> sendGroupMessages(String groupId, String message) {
         if (MapUtils.isEmpty(USER_EMITTER_CACHE)) {
-            return;
+            return null;
         }
+        Set<String> failedUserIds = new HashSet<>();
         USER_EMITTER_CACHE.forEach((userId, emitter) -> {
             try {
                 if (userId.startsWith(groupId)) {
                     emitter.send(message, MediaType.APPLICATION_JSON);
                 }
             } catch (IOException e) {
-                log.error("Failed to send message to user ID: " + userId, e);
+                log.error("Failed to Push message to user: " + userId, e);
                 removeUser(userId);
+                failedUserIds.add(userId);
             }
         });
+        return failedUserIds;
     }
 
     /**
-     * Send message to the connected users for specified groups
+     * Push message to the connected users for specified groups
      *
      * @param groupIds group IDs
      * @param message  message
+     * @return failed user IDs
      */
-    public static void sendGroupsMessages(Set<String> groupIds, String message) {
-        groupIds.forEach(groupId -> sendGroupMessages(groupId, message));
+    public static Set<String> sendGroupsMessages(Set<String> groupIds, String message) {
+        Set<String> failedUserIds = new HashSet<>();
+        groupIds.forEach(groupId -> failedUserIds.addAll(sendGroupMessages(groupId, message)));
+        return failedUserIds;
     }
 
     /**
-     * Send message to all connected users
+     * Push message to all online connected users
+     *
+     * @return failed user IDs
      */
-    public static void sendMessagesToALl(String message) {
+    public static Set<String> sendMessagesToALlConnectedUsers(String message) {
+        Set<String> failedUserIds = new HashSet<>();
         USER_EMITTER_CACHE.forEach((userId, emitter) -> {
             try {
                 emitter.send(message, MediaType.APPLICATION_JSON);
             } catch (IOException e) {
-                log.error("Failed to send message to user ID: " + userId, e);
+                log.error("Failed to Push message to user: " + userId, e);
                 removeUser(userId);
+                failedUserIds.add(userId);
             }
         });
+        return failedUserIds;
     }
 
     /**
