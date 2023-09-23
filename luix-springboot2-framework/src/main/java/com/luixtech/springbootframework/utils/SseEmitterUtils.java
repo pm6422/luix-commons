@@ -93,7 +93,7 @@ public class SseEmitterUtils {
      * @param message message
      * @return failed user IDs
      */
-    public static Set<String> sendGroupMessages(String groupId, String message) {
+    public static Set<String> pushGroupMessages(String groupId, String message) {
         if (MapUtils.isEmpty(USER_EMITTER_CACHE)) {
             return null;
         }
@@ -119,9 +119,9 @@ public class SseEmitterUtils {
      * @param message  message
      * @return failed user IDs
      */
-    public static Set<String> sendGroupsMessages(Set<String> groupIds, String message) {
+    public static Set<String> pushGroupsMessages(Set<String> groupIds, String message) {
         Set<String> failedUserIds = new HashSet<>();
-        groupIds.forEach(groupId -> failedUserIds.addAll(sendGroupMessages(groupId, message)));
+        groupIds.forEach(groupId -> failedUserIds.addAll(pushGroupMessages(groupId, message)));
         return failedUserIds;
     }
 
@@ -130,7 +130,7 @@ public class SseEmitterUtils {
      *
      * @return failed user IDs
      */
-    public static Set<String> sendMessagesToALlConnectedUsers(String message) {
+    public static Set<String> pushMessagesToALlConnectedUsers(String message) {
         Set<String> failedUserIds = new HashSet<>();
         USER_EMITTER_CACHE.forEach((userId, emitter) -> {
             try {
