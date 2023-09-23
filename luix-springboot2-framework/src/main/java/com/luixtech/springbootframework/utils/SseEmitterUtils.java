@@ -102,7 +102,7 @@ public class SseEmitterUtils {
      * @param groupIds group IDs
      * @param message  message
      */
-    public static void sendGroupsMessages(List<String> groupIds, String message) {
+    public static void sendGroupsMessages(Set<String> groupIds, String message) {
         groupIds.forEach(groupId -> sendGroupMessages(groupId, message));
     }
 
