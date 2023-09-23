@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -46,12 +47,12 @@ public class SseEmitterUtils {
     }
 
     /**
-     * Send message to the specified user
+     * Send message to the specified connected user
      *
      * @param userId  user ID
      * @param message message
      */
-    public static void sendMessage(String userId, String message) {
+    public static void sendUserMessage(String userId, String message) {
         if (!USER_EMITTER_CACHE.containsKey(userId)) {
             return;
         }
@@ -64,13 +65,13 @@ public class SseEmitterUtils {
     }
 
     /**
-     * Send message to the specified users
+     * Send message to the specified connected users
      *
      * @param userIds users IDs
      * @param message message
      */
-    public static void batchSendMessages(Set<String> userIds, String message) {
-        userIds.forEach(userId -> sendMessage(userId, message));
+    public static void sendUsersMessages(Set<String> userIds, String message) {
+        userIds.forEach(userId -> sendUserMessage(userId, message));
     }
 
     /**
@@ -93,6 +94,16 @@ public class SseEmitterUtils {
                 removeUser(userId);
             }
         });
+    }
+
+    /**
+     * Send message to the connected users for specified groups
+     *
+     * @param groupIds group IDs
+     * @param message  message
+     */
+    public static void sendGroupsMessages(List<String> groupIds, String message) {
+        groupIds.forEach(groupId -> sendGroupMessages(groupId, message));
     }
 
     /**
