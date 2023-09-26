@@ -14,14 +14,14 @@ public class LocaleConfiguration implements WebMvcConfigurer {
     @Bean(name = "localeResolver")
     public LocaleResolver localeResolver() {
         FrontendCookieLocaleResolver cookieLocaleResolver = new FrontendCookieLocaleResolver();
-        cookieLocaleResolver.setCookieName("TRANSLATE_LANG_KEY");
+        cookieLocaleResolver.setCookieName("LANG_KEY");
         return cookieLocaleResolver;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-        localeChangeInterceptor.setParamName("language");
+        localeChangeInterceptor.setParamName("lang");
         registry.addInterceptor(localeChangeInterceptor);
     }
 }
