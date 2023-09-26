@@ -1,5 +1,6 @@
 package com.luixtech.springbootframework.utils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,7 @@ public class TraceIdUtils {
         if (request == null) {
             return;
         }
-        String traceId = Optional.ofNullable(request.getHeader(TRACE_ID)).orElse(generateTraceId());
+        String traceId = StringUtils.isNotEmpty(request.getHeader(TRACE_ID)) ? request.getHeader(TRACE_ID) : generateTraceId();
         MDC.put(TRACE_ID, traceId);
     }
 
