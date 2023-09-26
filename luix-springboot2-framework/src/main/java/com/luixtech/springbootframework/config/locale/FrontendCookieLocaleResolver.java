@@ -16,14 +16,14 @@ import java.util.Objects;
 import java.util.TimeZone;
 
 /**
- * Angular cookie saved the locale with a double quote (%22en%22).
+ * Frontend cookie saved the locale with a double quote (%22en%22).
  * So the default CookieLocaleResolver#StringUtils.parseLocaleString(localePart)
  * is not able to parse the locale.
  * <p>
  * This class will check if a double quote has been added, if so it will remove it.
  */
 @Slf4j
-public class AngularCookieLocaleResolver extends CookieLocaleResolver {
+public class FrontendCookieLocaleResolver extends CookieLocaleResolver {
 
     @Override
     @Nonnull
