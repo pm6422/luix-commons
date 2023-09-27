@@ -25,7 +25,6 @@ public class LuixProperties {
     public static final String             SPRING_PROFILE_TEST = "test";
     public static final String             SPRING_PROFILE_DEMO = "demo";
     public static final String             SPRING_PROFILE_PROD = "prod";
-    private final       Lang               lang                = new Lang();
     private final       Http               http                = new Http();
     private final       ApiDocs            apiDocs             = new ApiDocs();
     private final       Metrics            metrics             = new Metrics();
@@ -34,10 +33,6 @@ public class LuixProperties {
     private final       Ribbon             ribbon              = new Ribbon();
     private final       AppInfo            appInfo             = new AppInfo();
 
-    @Data
-    public static class Lang {
-        private Locale defaultLocale;
-    }
 
     @Data
     public static class Http {

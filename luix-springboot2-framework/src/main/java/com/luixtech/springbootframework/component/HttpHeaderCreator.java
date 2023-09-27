@@ -1,8 +1,6 @@
 package com.luixtech.springbootframework.component;
 
-import com.luixtech.springbootframework.config.LuixProperties;
 import lombok.AllArgsConstructor;
-import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +11,7 @@ import java.nio.charset.StandardCharsets;
 @AllArgsConstructor
 public class HttpHeaderCreator {
 
-    private final LuixProperties luixProperties;
-    private final MessageSource  messageSource;
+    private final MessageCreator  messageCreator;
 
     public HttpHeaders createSuccessHeader(String code, Object... args) {
         HttpHeaders headers = new HttpHeaders();
@@ -23,7 +20,7 @@ public class HttpHeaderCreator {
     }
 
     private String getMessage(String code, Object... args) {
-        String message = messageSource.getMessage(code, args, luixProperties.getLang().getDefaultLocale());
+        String message = messageCreator.getMessage(code, args);
 
         try {
             // URLEncoder.encode convert space to +, but we expect the %20 as space
