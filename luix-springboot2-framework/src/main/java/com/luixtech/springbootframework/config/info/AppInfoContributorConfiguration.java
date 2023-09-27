@@ -1,6 +1,7 @@
 package com.luixtech.springbootframework.config.info;
 
 import com.luixtech.springbootframework.config.LuixProperties;
+import org.springdoc.core.SpringDocConfigProperties;
 import org.springframework.boot.actuate.autoconfigure.info.ConditionalOnEnabledInfoContributor;
 import org.springframework.boot.actuate.autoconfigure.info.InfoContributorAutoConfiguration;
 import org.springframework.boot.actuate.info.InfoContributor;
@@ -16,18 +17,20 @@ import org.springframework.core.env.ConfigurableEnvironment;
 @Configuration
 @AutoConfigureAfter(InfoContributorAutoConfiguration.class)
 @ConditionalOnClass(InfoContributor.class)
-public class InfoContributorConfiguration {
+public class AppInfoContributorConfiguration {
 
     /**
      * <p>activeProfilesInfoContributor.</p>
      *
      * @param env            a {@link org.springframework.core.env.ConfigurableEnvironment} object.
      * @param luixProperties a {@link com.luixtech.springbootframework.config.LuixProperties} object.
-     * @return a {@link RibbonInfoContributor} object.
+     * @return a {@link AppInfoContributor} object.
      */
     @Bean
     @ConditionalOnEnabledInfoContributor("active-profiles")
-    public RibbonInfoContributor activeProfilesInfoContributor(ConfigurableEnvironment env, LuixProperties luixProperties) {
-        return new RibbonInfoContributor(env, luixProperties);
+    public AppInfoContributor activeProfilesInfoContributor(ConfigurableEnvironment env,
+                                                            SpringDocConfigProperties springDocConfigProperties,
+                                                            LuixProperties luixProperties) {
+        return new AppInfoContributor(env, springDocConfigProperties, luixProperties);
     }
 }

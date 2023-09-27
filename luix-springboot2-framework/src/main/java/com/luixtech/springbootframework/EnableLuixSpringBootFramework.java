@@ -12,7 +12,7 @@ import com.luixtech.springbootframework.config.LocaleConfiguration;
 import com.luixtech.springbootframework.config.LuixProperties;
 import com.luixtech.springbootframework.config.apidoc.OpenApiEndpointConfiguration;
 import com.luixtech.springbootframework.config.apidoc.SpringDocConfiguration;
-import com.luixtech.springbootframework.config.info.InfoContributorConfiguration;
+import com.luixtech.springbootframework.config.info.AppInfoContributorConfiguration;
 import com.luixtech.springbootframework.config.metrics.LuixMetricsEndpointConfiguration;
 import org.springframework.context.annotation.Import;
 
@@ -24,7 +24,7 @@ import java.lang.annotation.*;
 @Import({AopLoggingAspect.class, ElapsedTimeLoggingAspect.class, ExceptionTranslatorAdviceAspect.class,
         HttpHeaderCreator.class, MessageCreator.class, PrintAppInfoApplicationRunner.class,
         AsyncConfiguration.class, LocaleConfiguration.class, LuixProperties.class, OpenApiEndpointConfiguration.class,
-        SpringDocConfiguration.class, InfoContributorConfiguration.class, LuixMetricsEndpointConfiguration.class,
+        SpringDocConfiguration.class, AppInfoContributorConfiguration.class, LuixMetricsEndpointConfiguration.class,
         DropwizardMetricsConfiguration.class})
 public @interface EnableLuixSpringBootFramework {
 
