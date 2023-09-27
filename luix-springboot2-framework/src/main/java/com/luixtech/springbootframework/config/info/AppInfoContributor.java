@@ -17,9 +17,8 @@ import java.util.List;
  * An {@link org.springframework.boot.actuate.info.InfoContributor} that exposes the list of active spring profiles.
  */
 public class AppInfoContributor implements InfoContributor {
-
-    private final String  ribbonProfile;
     private final boolean apiDocsEnabled;
+    private final String  ribbonProfile;
 
     /**
      * <p>Constructor for ActiveProfilesInfoContributor.</p>
