@@ -36,12 +36,12 @@ public class AppInfoContributor implements InfoContributor {
                 : env.getActiveProfiles();
         List<String> displayRibbonOnProfiles = luixProperties.getRibbon().getDisplayOnActiveProfiles();
         if (CollectionUtils.isEmpty(displayRibbonOnProfiles)) {
-            ribbonProfile = StringUtils.EMPTY;
+            ribbonProfile = null;
             return;
         }
         Collection<String> intersection = CollectionUtils.intersection(Arrays.asList(profilesArray),
                 displayRibbonOnProfiles);
-        ribbonProfile = intersection.isEmpty() ? StringUtils.EMPTY : intersection.iterator().next();
+        ribbonProfile = intersection.isEmpty() ? null : intersection.iterator().next();
     }
 
     /**
