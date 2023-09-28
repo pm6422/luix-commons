@@ -61,7 +61,7 @@ public class Result<T> {
         return response;
     }
 
-    public static <T> Result<T> noData(String message) {
+    public static <T> Result<T> dataNotFound(String message) {
         Result<T> response = new Result<>();
         response.setCode(NO_DATA.getCode());
         response.setMessage(StringUtils.isEmpty(message) ? NO_DATA.getMessage() : message);

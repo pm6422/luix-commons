@@ -13,8 +13,6 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-import java.util.Objects;
-
 /**
  * Controller advice to translate the server side normal http response to client-friendly json structures.
  * <p>
@@ -25,7 +23,8 @@ import java.util.Objects;
 public class ResponseConverterAdvice implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter methodParameter, @NonNull Class<? extends HttpMessageConverter<?>> clazz) {
-        return Objects.requireNonNull(methodParameter.getMethod()).isAnnotationPresent(ConvertResponse.class)
+        return (methodParameter.getMethod().getDeclaringClass().isAnnotationPresent(ConvertResponse.class)
+                || methodParameter.getMethod().isAnnotationPresent(ConvertResponse.class))
                 && MappingJackson2HttpMessageConverter.class.isAssignableFrom(clazz);
     }
 
