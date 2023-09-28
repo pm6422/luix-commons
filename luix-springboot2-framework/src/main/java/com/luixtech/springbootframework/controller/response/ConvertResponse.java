@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * If the method is annotated with this annotation, the result of method will be converted by
+ * If the controller method is annotated with this annotation, the result of method will be converted by
  * {@link ResponseConverterAdvice}
  */
 @Retention(RetentionPolicy.RUNTIME)
