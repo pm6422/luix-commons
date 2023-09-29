@@ -11,6 +11,7 @@ import com.luixtech.uidgenerator.springboot.epochseconds.DefaultEpochSecondsServ
 import com.luixtech.uidgenerator.springboot.sequence.IncrementIdService;
 import com.luixtech.uidgenerator.springboot.sequence.impl.DefaultIncrementIdServiceImpl;
 import com.luixtech.uidgenerator.springboot.worker.DefaultWorkerNodeServiceImpl;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 
 import javax.annotation.Resource;
 
+@ConditionalOnProperty("uid.enabled")
 @EnableConfigurationProperties({UidProperties.class})
 public class UidAutoConfiguration {
 

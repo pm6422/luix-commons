@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 @Data
 @Validated
 public class UidProperties implements InitializingBean {
+    private       boolean      enabled      = true;
     private final DataSource   dataSource   = new DataSource();
     private final Worker       worker       = new Worker();
     private final EpochSeconds epochSeconds = new EpochSeconds();
