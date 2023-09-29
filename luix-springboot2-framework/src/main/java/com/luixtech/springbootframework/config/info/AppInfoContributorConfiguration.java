@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.ConfigurableEnvironment;
 
+import java.util.Optional;
+
 /**
  * Auto-configuration for custom {@link org.springframework.boot.actuate.info.InfoContributor}s.
  */
@@ -29,8 +31,10 @@ public class AppInfoContributorConfiguration {
     @Bean
     @ConditionalOnEnabledInfoContributor("active-profiles")
     public AppInfoContributor activeProfilesInfoContributor(ConfigurableEnvironment env,
-                                                            SpringDocConfigProperties springDocConfigProperties,
+                                                            Optional<SpringDocConfigProperties> springDocConfigProperties,
                                                             LuixProperties luixProperties) {
-        return new AppInfoContributor(env, springDocConfigProperties, luixProperties);
+        return new AppInfoContributor(env,
+                springDocConfigProperties.isPresent() ? springDocConfigProperties.get().getApiDocs().isEnabled() : false,
+                luixProperties);
     }
 }

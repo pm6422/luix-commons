@@ -3,8 +3,6 @@ package com.luixtech.springbootframework.config.info;
 
 import com.luixtech.springbootframework.config.LuixProperties;
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springdoc.core.SpringDocConfigProperties;
 import org.springframework.boot.actuate.info.Info;
 import org.springframework.boot.actuate.info.InfoContributor;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -23,14 +21,14 @@ public class AppInfoContributor implements InfoContributor {
     /**
      * <p>Constructor for ActiveProfilesInfoContributor.</p>
      *
-     * @param env                       a {@link ConfigurableEnvironment} object.
-     * @param springDocConfigProperties a {@link SpringDocConfigProperties} object.
-     * @param luixProperties            a {@link LuixProperties} object.
+     * @param env            a {@link ConfigurableEnvironment} object.
+     * @param apiDocsEnabled API enabled.
+     * @param luixProperties a {@link LuixProperties} object.
      */
     public AppInfoContributor(ConfigurableEnvironment env,
-                              SpringDocConfigProperties springDocConfigProperties,
+                              boolean apiDocsEnabled,
                               LuixProperties luixProperties) {
-        apiDocsEnabled = springDocConfigProperties.getApiDocs().isEnabled();
+        this.apiDocsEnabled = apiDocsEnabled;
         String[] profilesArray = env.getActiveProfiles().length == 0
                 ? env.getDefaultProfiles()
                 : env.getActiveProfiles();
