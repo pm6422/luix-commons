@@ -12,7 +12,9 @@ import java.text.MessageFormat;
 import java.time.Duration;
 
 /**
- * Refer to https://itwake.blog.csdn.net/article/details/122043499
+ * Refer to
+ * https://itwake.blog.csdn.net/article/details/122043499
+ * https://blog.csdn.net/whzhaochao/article/details/130512864
  */
 @Slf4j
 public abstract class WeComUtils {
