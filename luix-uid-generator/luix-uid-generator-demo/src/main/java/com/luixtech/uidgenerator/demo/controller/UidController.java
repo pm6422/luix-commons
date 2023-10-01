@@ -1,4 +1,4 @@
-package com.luixtech.uidgenerator.usagedemo.controller;
+package com.luixtech.uidgenerator.demo.controller;
 
 import com.luixtech.uidgenerator.core.uid.UidGenerator;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.luixtech.uidgenerator.usagedemo;
+package com.luixtech.uidgenerator.demo;
 
 import com.luixtech.springbootframework.EnableLuixSpringBootFramework;
 import com.luixtech.uidgenerator.springboot.config.EnableUidGenerator;
