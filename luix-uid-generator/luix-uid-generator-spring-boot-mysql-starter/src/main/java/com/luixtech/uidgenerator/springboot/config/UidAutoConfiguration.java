@@ -8,6 +8,7 @@ import com.luixtech.uidgenerator.core.worker.WorkerIdAssigner;
 import com.luixtech.uidgenerator.core.worker.WorkerNodeService;
 import com.luixtech.uidgenerator.springboot.epochseconds.MysqlEpochSecondsServiceImpl;
 import com.luixtech.uidgenerator.springboot.worker.MysqlWorkerNodeServiceImpl;
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.Validate;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
@@ -22,14 +23,12 @@ import org.springframework.context.annotation.Bean;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
-@ConditionalOnProperty("uid.enabled")
+@ConditionalOnProperty(prefix = "luix.uid", name = "enabled", havingValue = "true", matchIfMissing = true)
 @EnableConfigurationProperties({UidProperties.class})
+@AllArgsConstructor
 public class UidAutoConfiguration {
-
-    @Resource
-    private UidProperties      uidProperties;
-    @Resource
-    private ApplicationContext applicationContext;
+    private final UidProperties      uidProperties;
+    private final ApplicationContext applicationContext;
 
     @Bean
     public DSLContext luixDslContext() {

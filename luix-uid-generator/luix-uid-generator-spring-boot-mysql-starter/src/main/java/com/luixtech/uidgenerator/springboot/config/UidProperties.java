@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated;
 /**
  * Properties of UID generator.
  */
-@ConfigurationProperties(prefix = "uid")
+@ConfigurationProperties(prefix = "luix.uid")
 @Data
 @Validated
 public class UidProperties implements InitializingBean {

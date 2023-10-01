@@ -11,22 +11,19 @@ import com.luixtech.uidgenerator.springboot.epochseconds.DefaultEpochSecondsServ
 import com.luixtech.uidgenerator.springboot.sequence.IncrementIdService;
 import com.luixtech.uidgenerator.springboot.sequence.impl.DefaultIncrementIdServiceImpl;
 import com.luixtech.uidgenerator.springboot.worker.DefaultWorkerNodeServiceImpl;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-import javax.annotation.Resource;
-
-@ConditionalOnProperty("uid.enabled")
+@ConditionalOnProperty(prefix = "luix.uid", name = "enabled", havingValue = "true", matchIfMissing = true)
 @EnableConfigurationProperties({UidProperties.class})
+@AllArgsConstructor
 public class UidAutoConfiguration {
-
-    @Resource
-    private UidProperties      uidProperties;
-    @Resource
-    private ApplicationContext applicationContext;
+    private final UidProperties      uidProperties;
+    private final ApplicationContext applicationContext;
 
     @Bean
     public IncrementIdService defaultIncrementIdServiceImpl(MongoTemplate mongoTemplate) {

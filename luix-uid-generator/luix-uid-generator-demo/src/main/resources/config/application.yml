@@ -74,13 +74,13 @@ springdoc: # https://springdoc.org/#migrating-from-springfox
   api-docs:
     enabled: true
   show-actuator: true
-uid: # UID configuration, used by UidProperties
-  worker:
-    appId: ${spring.application.name}
 # ===================================================================
-# Application specific properties
+# Luix properties
 # ===================================================================
 luix:
+  uid: # UID configuration, used by UidProperties
+    worker:
+      appId: ${spring.application.name}
   api-docs:
     api-include-pattern: /api/**
     open-api-include-pattern: /open-api/**
