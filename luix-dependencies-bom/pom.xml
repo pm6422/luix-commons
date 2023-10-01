@@ -55,9 +55,15 @@
         <tomcat_embed_version>9.0.63</tomcat_embed_version>
         <transmittable_thread_local_version>2.14.2</transmittable_thread_local_version>
         <validation_version>2.0.1.Final</validation_version>
+        <swagger_version>2.2.4</swagger_version>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger_version}</version>
+            </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>

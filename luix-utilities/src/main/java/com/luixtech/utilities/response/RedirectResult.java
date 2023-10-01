@@ -1,4 +1,4 @@
-package com.luixtech.springbootframework.controller.response;
+package com.luixtech.utilities.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

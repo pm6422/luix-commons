@@ -1,6 +1,4 @@
-package com.luixtech.springbootframework.controller.response;
-
-import com.luixtech.springbootframework.controller.advice.ResponseConverterAdvice;
+package com.luixtech.utilities.response;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * If the controller method is annotated with this annotation, the result of method will be converted by
- * {@link ResponseConverterAdvice}
+ * {@link com.luixtech.springbootframework.controller.advice.ResponseConverterAdvice}
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

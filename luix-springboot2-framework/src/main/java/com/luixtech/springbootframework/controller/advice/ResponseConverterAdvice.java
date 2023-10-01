@@ -1,7 +1,7 @@
 package com.luixtech.springbootframework.controller.advice;
 
-import com.luixtech.springbootframework.controller.response.ConvertResponse;
-import com.luixtech.springbootframework.controller.response.Result;
+import com.luixtech.utilities.response.ConvertResponse;
+import com.luixtech.utilities.response.Result;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;

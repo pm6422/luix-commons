@@ -1,4 +1,4 @@
-package com.luixtech.springbootframework.controller.response;
+package com.luixtech.utilities.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
-import static com.luixtech.springbootframework.controller.response.Result.ResultCode.*;
+import static com.luixtech.utilities.response.Result.ResultCode.*;
 
 @Data
 @NoArgsConstructor
