@@ -1,6 +1,7 @@
 package com.luixtech.utilities.notification.wecom;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.net.HttpHeaders;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,7 +28,7 @@ public abstract class WeComUtils {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(MessageFormat.format(ROBOT_WEBHOOK_URL, webhookKey)))
                 .timeout(timeout)
-                .header("Content-Type", "application/json")
+                .header(HttpHeaders.CONTENT_TYPE, "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(requestJson))
                 .build();
         HttpClient client = HttpClient.newBuilder()
