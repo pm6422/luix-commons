@@ -103,7 +103,7 @@ public class Result<T> {
      */
     @JsonIgnore
     public boolean isOk() {
-        return OK.getCode().equals(this.getCode());
+        return this != null && OK.getCode().equals(this.getCode());
     }
 
     public enum ResultCode {
