@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * {@link com.luixtech.springbootframework.controller.advice.ResponseConverterAdvice}
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD, ElementType.TYPE})
 public @interface ConvertResponse {
 
 }
