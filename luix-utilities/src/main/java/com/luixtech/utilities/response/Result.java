@@ -129,7 +129,7 @@ public class Result<T> {
         MISSING_USER("SYS2005", "用户已经存在"),
 
         INTERNAL_SERVER_ERROR("SYS3001", "服务器内部错误"),
-        CONCURRENCY_ERROR("SYS3002", "多线程并发执行错误"),
+        CONCURRENCY_ERROR("SYS3002", "并发执行错误"),
         REQUEST_TIMEOUT("SYS3003", "请求处理超时"),
         INVOCATION_TIMEOUT("SYS3004", "第三方调用超时"),
         INVOCATION_ERROR("SYS3005", "第三方调用异常");
