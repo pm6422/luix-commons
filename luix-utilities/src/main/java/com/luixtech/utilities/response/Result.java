@@ -12,7 +12,7 @@ import static com.luixtech.utilities.response.Result.ResultCode.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(description = "HTTP Response Result")
+@Schema(description = "HTTP result Result")
 public class Result<T> {
     @Schema(description = "code", example = "SYS0000", required = true)
     private String code;
@@ -21,79 +21,79 @@ public class Result<T> {
     @Schema(description = "data")
     private T      data;
 
-    public Result(ResultCode responseCode) {
-        this.code = responseCode.getCode();
-        this.message = responseCode.getMessage();
+    public Result(ResultCode resultCode) {
+        this.code = resultCode.getCode();
+        this.message = resultCode.getMessage();
     }
 
-    public Result(T data, ResultCode responseCode) {
+    public Result(T data, ResultCode resultCode) {
         this.data = data;
-        this.code = responseCode.getCode();
-        this.message = responseCode.getMessage();
+        this.code = resultCode.getCode();
+        this.message = resultCode.getMessage();
     }
 
     public static <T> Result<T> ok(T body) {
-        Result<T> response = new Result<>();
-        response.setData(body);
-        response.setCode(OK.getCode());
-        response.setMessage(OK.getMessage());
-        return response;
+        Result<T> result = new Result<>();
+        result.setData(body);
+        result.setCode(OK.getCode());
+        result.setMessage(OK.getMessage());
+        return result;
     }
 
     public static <T> Result<T> ok() {
-        Result<T> response = new Result<>();
-        response.setCode(OK.getCode());
-        response.setMessage(OK.getMessage());
-        return response;
+        Result<T> result = new Result<>();
+        result.setCode(OK.getCode());
+        result.setMessage(OK.getMessage());
+        return result;
     }
 
     public static <T> Result<T> error(String message) {
-        Result<T> response = new Result<>();
-        response.setCode(ERROR.getCode());
-        response.setMessage(StringUtils.isEmpty(message) ? ERROR.getMessage() : message);
-        return response;
+        Result<T> result = new Result<>();
+        result.setCode(ERROR.getCode());
+        result.setMessage(StringUtils.isEmpty(message) ? ERROR.getMessage() : message);
+        return result;
     }
 
     public static <T> Result<T> illegalArgument(String message) {
-        Result<T> response = new Result<>();
-        response.setCode(ILLEGAL_ARGUMENT.getCode());
-        response.setMessage(StringUtils.isEmpty(message) ? ILLEGAL_ARGUMENT.getMessage() : message);
-        return response;
+        Result<T> result = new Result<>();
+        result.setCode(ILLEGAL_ARG.getCode());
+        result.setMessage(StringUtils.isEmpty(message) ? ILLEGAL_ARG.getMessage() : message);
+        return result;
     }
 
     public static <T> Result<T> dataNotFound(String message) {
-        Result<T> response = new Result<>();
-        response.setCode(NO_DATA.getCode());
-        response.setMessage(StringUtils.isEmpty(message) ? NO_DATA.getMessage() : message);
-        return response;
+        Result<T> result = new Result<>();
+        result.setCode(DATA_NOT_FOUND.getCode());
+        result.setMessage(StringUtils.isEmpty(message) ? DATA_NOT_FOUND.getMessage() : message);
+        return result;
     }
 
     public static <T> Result<T> serverError(String message) {
-        Result<T> response = new Result<>();
-        response.setCode(INTERNAL_SERVER_ERROR.getCode());
-        response.setMessage(StringUtils.isEmpty(message) ? INTERNAL_SERVER_ERROR.getMessage() : message);
-        return response;
+        Result<T> result = new Result<>();
+        result.setCode(INTERNAL_SERVER_ERROR.getCode());
+        result.setMessage(StringUtils.isEmpty(message) ? INTERNAL_SERVER_ERROR.getMessage() : message);
+        return result;
     }
 
     public static <T> Result<T> requestTimeout(String message) {
-        Result<T> response = new Result<>();
-        response.setCode(REQUEST_TIMEOUT.getCode());
-        response.setMessage(StringUtils.isEmpty(message) ? REQUEST_TIMEOUT.getMessage() : message);
-        return response;
+        Result<T> result = new Result<>();
+        result.setCode(REQUEST_TIMEOUT.getCode());
+        result.setMessage(StringUtils.isEmpty(message) ? REQUEST_TIMEOUT.getMessage() : message);
+        return result;
     }
 
     public static <T> Result<T> invocationTimeout(String message) {
-        Result<T> response = new Result<>();
-        response.setCode(INVOCATION_TIMEOUT.getCode());
-        response.setMessage(StringUtils.isEmpty(message) ? INVOCATION_TIMEOUT.getMessage() : message);
-        return response;
+        Result<T> result = new Result<>();
+        result.setCode(INVOCATION_TIMEOUT.getCode());
+        result.setMessage(StringUtils.isEmpty(message) ? INVOCATION_TIMEOUT.getMessage() : message);
+        return result;
     }
 
     public static <T> Result<T> invocationError(String message) {
-        Result<T> response = new Result<>();
-        response.setCode(INVOCATION_ERROR.getCode());
-        response.setMessage(StringUtils.isEmpty(message) ? INVOCATION_ERROR.getMessage() : message);
-        return response;
+        Result<T> result = new Result<>();
+        result.setCode(INVOCATION_ERROR.getCode());
+        result.setMessage(StringUtils.isEmpty(message) ? INVOCATION_ERROR.getMessage() : message);
+        return result;
     }
 
     /**
@@ -116,17 +116,19 @@ public class Result<T> {
 
         OK("SYS0000", "处理成功"),
         ERROR("SYS1001", "处理失败"),
-        EMPTY_PARAM("SYS1002", "参数为空"),
-        MISSING_PARAM("SYS1003", "参数缺失"),
-        NO_DATA("SYS1010", "查询不到该记录"),
-        EXISTING_DATA("SYS1011", "记录已存在"),
-        ILLEGAL_ARGUMENT("SYS1012", "非法参数"),
+        ILLEGAL_ARG("SYS1002", "非法参数"),
+        EMPTY_ARG("SYS1003", "参数为空"),
+        MISSING_ARG("SYS1004", "参数缺失"),
+        DATA_NOT_FOUND("SYS1010", "数据不存在"),
+        DATA_ALREADY_EXISTS("SYS1011", "该数据已存在"),
 
-        NOT_LOGIN("SYS2001", "用户未登录，访问路径需要验证"),
-        LOGIN_FAILED("SYS2002", "账号不存在或密码错误"),
-        DISABLED_ACCOUNT("SYS2003", "账号被禁用"),
-        USER_NOT_EXISTS("SYS2004", "用户不存在"),
-        EXISTING_USER("SYS2005", "用户已经存在"),
+        USER_NOT_LOGGED("SYS2001", "用户未登录"),
+        USER_NOT_EXISTS("SYS2002", "用户不存在"),
+        USER_ALREADY_EXISTS("SYS2003", "用户已经存在"),
+        UNKNOWN_ACCOUNT("SYS2004", "未知账号"),
+        DISABLED_ACCOUNT("SYS2005", "账号被禁用"),
+        INACTIVE_ACCOUNT("SYS2006", "账号未激活"),
+        INCORRECT_CREDENTIAL("SYS2007", "账号密码错误"),
 
         INTERNAL_SERVER_ERROR("SYS3001", "服务器内部错误"),
         CONCURRENCY_ERROR("SYS3002", "并发执行错误"),
