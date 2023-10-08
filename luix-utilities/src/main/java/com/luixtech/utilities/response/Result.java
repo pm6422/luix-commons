@@ -126,7 +126,7 @@ public class Result<T> {
         LOGIN_FAILED("SYS2002", "账号不存在或密码错误"),
         DISABLED_ACCOUNT("SYS2003", "账号被禁用"),
         USER_NOT_EXISTS("SYS2004", "用户不存在"),
-        MISSING_USER("SYS2005", "用户已经存在"),
+        EXISTING_USER("SYS2005", "用户已经存在"),
 
         INTERNAL_SERVER_ERROR("SYS3001", "服务器内部错误"),
         CONCURRENCY_ERROR("SYS3002", "并发执行错误"),
