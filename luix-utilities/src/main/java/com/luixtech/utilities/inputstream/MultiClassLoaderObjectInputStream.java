@@ -12,7 +12,7 @@ import java.io.ObjectStreamClass;
  */
 @Slf4j
 public class MultiClassLoaderObjectInputStream extends ObjectInputStream {
-    MultiClassLoaderObjectInputStream(InputStream str) throws IOException {
+    public MultiClassLoaderObjectInputStream(InputStream str) throws IOException {
         super(str);
     }
 
