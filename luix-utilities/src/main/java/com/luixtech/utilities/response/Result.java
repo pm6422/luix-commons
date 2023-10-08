@@ -54,10 +54,10 @@ public class Result<T> {
         return response;
     }
 
-    public static <T> Result<T> invalidParam(String message) {
+    public static <T> Result<T> illegalArgument(String message) {
         Result<T> response = new Result<>();
-        response.setCode(INVALID_PARAM.getCode());
-        response.setMessage(StringUtils.isEmpty(message) ? INVALID_PARAM.getMessage() : message);
+        response.setCode(ILLEGAL_ARGUMENT.getCode());
+        response.setMessage(StringUtils.isEmpty(message) ? ILLEGAL_ARGUMENT.getMessage() : message);
         return response;
     }
 
@@ -120,7 +120,7 @@ public class Result<T> {
         MISSING_PARAM("SYS1003", "参数缺失"),
         NO_DATA("SYS1010", "查询不到该记录"),
         EXISTING_DATA("SYS1011", "记录已存在"),
-        INVALID_PARAM("SYS1012", "非法参数"),
+        ILLEGAL_ARGUMENT("SYS1012", "非法参数"),
 
         NOT_LOGIN("SYS2001", "用户未登录，访问路径需要验证"),
         LOGIN_FAILED("SYS2002", "账号不存在或密码错误"),
