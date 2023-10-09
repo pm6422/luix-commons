@@ -12,7 +12,7 @@ import static com.luixtech.utilities.response.Result.ResultCode.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(description = "HTTP result Result")
+@Schema(description = "Result object")
 public class Result<T> {
     @Schema(description = "code", example = "SYS0000", required = true)
     private String code;
@@ -115,33 +115,21 @@ public class Result<T> {
 
     public enum ResultCode {
         // ---------------------------
-        // 0000       处理成功
-        // 1000～1999 区间表示参数错误
-        // 2000～2999 区间表示用户错误
-        // 3000～3999 区间表示系统业务异常
+        // SYS0000          Success
+        // SYS1000～SYS1999 Argument Error
+        // SYS2000～SYS2999 System Error
         // ---------------------------
+        OK("SYS0000", "OK"),
 
-        OK("SYS0000", "处理成功"),
-        ERROR("SYS1001", "处理失败"),
-        ILLEGAL_ARG("SYS1002", "非法参数"),
-        EMPTY_ARG("SYS1003", "参数为空"),
-        MISSING_ARG("SYS1004", "参数缺失"),
-        DATA_NOT_FOUND("SYS1010", "数据不存在"),
-        DATA_ALREADY_EXISTS("SYS1011", "该数据已存在"),
+        ERROR("SYS1001", "Failure"),
+        ILLEGAL_ARG("SYS1002", "Illegal argument"),
+        DATA_NOT_FOUND("SYS1003", "Data not found"),
 
-        USER_NOT_LOGGED("SYS2001", "用户未登录"),
-        USER_NOT_EXISTS("SYS2002", "用户不存在"),
-        USER_ALREADY_EXISTS("SYS2003", "用户已经存在"),
-        UNKNOWN_ACCOUNT("SYS2004", "未知账号"),
-        DISABLED_ACCOUNT("SYS2005", "账号被禁用"),
-        INACTIVE_ACCOUNT("SYS2006", "账号未激活"),
-        INCORRECT_CREDENTIAL("SYS2007", "账号密码错误"),
-
-        INTERNAL_SERVER_ERROR("SYS3001", "服务器内部错误"),
-        CONCURRENCY_ERROR("SYS3002", "并发执行错误"),
-        REQUEST_TIMEOUT("SYS3003", "请求处理超时"),
-        INVOCATION_TIMEOUT("SYS3004", "第三方调用超时"),
-        INVOCATION_ERROR("SYS3005", "第三方调用异常");
+        INTERNAL_SERVER_ERROR("SYS2001", "Internal server error"),
+        CONCURRENCY_ERROR("SYS2002", "Concurrency error"),
+        REQUEST_TIMEOUT("SYS2003", "Request timeout"),
+        INVOCATION_TIMEOUT("SYS2004", "Invocation timeout"),
+        INVOCATION_ERROR("SYS2005", "Invocation error");
 
         private final String code;
         private final String message;
