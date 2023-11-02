@@ -118,12 +118,12 @@ public class AopLoggingAspect {
     }
 
     private boolean matchLogMethod(ProceedingJoinPoint joinPoint) {
-        if (!luixProperties.getAopLogging().isMethodWhitelistMode()) {
+        if (!luixProperties.getAopLogging().isMethodBlacklistMode()) {
             return true;
         }
         String method = joinPoint.getSignature().getDeclaringType().getSimpleName() + "." +
                 joinPoint.getSignature().getName();
-        return luixProperties.getAopLogging().getMethodWhitelist().contains(method);
+        return !luixProperties.getAopLogging().getMethodBlacklist().contains(method);
     }
 
     /**

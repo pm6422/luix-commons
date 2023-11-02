@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Properties specific to Application.
@@ -105,8 +104,8 @@ public class LuixProperties {
     @Data
     public static class AopLogging {
         private boolean      enabled;
-        private boolean      methodWhitelistMode;
-        private List<String> methodWhitelist;
+        private boolean      methodBlacklistMode;
+        private List<String> methodBlacklist;
     }
 
     @Data
