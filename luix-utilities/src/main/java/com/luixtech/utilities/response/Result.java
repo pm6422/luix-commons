@@ -114,22 +114,17 @@ public class Result<T> {
     }
 
     public enum ResultCode {
-        // ---------------------------
-        // SYS0000          Success
-        // SYS1000～SYS1999 Argument Error
-        // SYS2000～SYS2999 System Error
-        // ---------------------------
-        OK("SYS0000", "OK"),
+        OK("SM1000", "OK"),
 
-        ERROR("SYS1001", "Failure"),
-        ILLEGAL_ARG("SYS1002", "Illegal argument"),
-        DATA_NOT_FOUND("SYS1003", "Data not found"),
+        ERROR("EM1000", "Failure"),
+        ILLEGAL_ARG("IA1000", "Illegal argument"),
+        DATA_NOT_FOUND("IA1002", "Data not found"),
 
-        INTERNAL_SERVER_ERROR("SYS2001", "Internal server error"),
-        CONCURRENCY_ERROR("SYS2002", "Concurrency error"),
-        REQUEST_TIMEOUT("SYS2003", "Request timeout"),
-        INVOCATION_TIMEOUT("SYS2004", "Invocation timeout"),
-        INVOCATION_ERROR("SYS2005", "Invocation error");
+        INTERNAL_SERVER_ERROR("SE1000", "System error"),
+        CONCURRENCY_ERROR("SE1002", "Concurrency error"),
+        REQUEST_TIMEOUT("SE1003", "Request timeout"),
+        INVOCATION_TIMEOUT("SE1004", "Invocation timeout"),
+        INVOCATION_ERROR("SE1005", "Invocation error");
 
         private final String code;
         private final String message;
