@@ -8,16 +8,8 @@ import org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig;
  * Refer to <a href="https://www.toutiao.com/article/7100736419382968868/?log_from=befad6de6e9a9_1676367278980">SpringBoot集成Jasypt加密敏感信息</a>
  */
 public abstract class JasyptEncryptUtils {
-
-    private static final String DEFAULT_PUBLIC_KEY = "PEB232@2HJ89";
-    private static final String DEFAULT_ALGORITHM  = "PBEWithMD5AndDES";
-
-    public static void main(String[] args) {
-        String username = encrypt("root");
-        String password = encrypt("123456");
-        System.out.println(decrypt(username));
-        System.out.println(decrypt(password));
-    }
+    public static final String DEFAULT_ALGORITHM  = "PBEWithMD5AndDES";
+    public static final String DEFAULT_PUBLIC_KEY = "PEB232@2HJ67@HRT78";
 
     /**
      * Encrypt the plain text
