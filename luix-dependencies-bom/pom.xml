@@ -25,7 +25,6 @@
         <hibernate_validator_version>6.1.7.Final</hibernate_validator_version>
         <jackson_version>2.13.5</jackson_version>
         <jakarta_annotation_version>1.3.5</jakarta_annotation_version>
-        <jaspt_version>1.9.3</jaspt_version>
         <java.version>11</java.version>
         <jjwt_version>0.11.2</jjwt_version>
         <jsr305_version>3.0.2</jsr305_version>
@@ -89,11 +88,6 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson_version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jasypt</groupId>
-                <artifactId>jasypt</artifactId>
-                <version>${jaspt_version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.code.findbugs</groupId>
