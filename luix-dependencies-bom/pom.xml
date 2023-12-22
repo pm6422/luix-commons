@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <name>luix-dependencies-bom</name>
     <description>Luix dependencies BOM</description>
-    <url>http://www.luixtech.com</url>
+    <url>http://www.luixtech.cn</url>
     <properties>
         <assertj_version>3.22.0</assertj_version>
         <commons_collections4_version>4.4</commons_collections4_version>

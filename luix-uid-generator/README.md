@@ -95,7 +95,7 @@ IdGenerator.generateTimestampId();
 
 ## Official Website
 
-http://www.luixtech.com
+http://www.luixtech.cn
 
 ## References
 

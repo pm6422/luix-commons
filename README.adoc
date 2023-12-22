@@ -34,4 +34,4 @@ Run the following command to build the project:
 
 [[contacts]]
 == Contacts
-- Email: louis@luixtech.com
+- Email: louis@luixtech.cn
