@@ -126,7 +126,7 @@ public class MysqlWorkerNodeServiceImpl implements WorkerNodeService {
                             .set(DSL.field("uptime"), domain.getUptime())
                             .set(DSL.field("created_time"), domain.getCreatedTime())
                             .execute();
-            return dslContext.lastID().longValue();
+            return dslContext1.lastID().longValue();
         });
     }
 }
