@@ -9,6 +9,9 @@
     <artifactId>luix-springboot2-framework</artifactId>
     <name>${project.artifactId}</name>
     <description>Luix SpringBoot 2 framework</description>
+    <properties>
+        <java.version>11</java.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>

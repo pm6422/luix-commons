@@ -9,7 +9,18 @@
     <artifactId>luix-utilities</artifactId>
     <name>${project.artifactId}</name>
     <description>Luix utilities</description>
+    <properties>
+        <java.version>11</java.version>
+    </properties>
     <dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>transmittable-thread-local</artifactId>
