@@ -11,6 +11,7 @@ import com.luixtech.uidgenerator.springboot.worker.MysqlWorkerNodeServiceImpl;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.Validate;
 import org.jooq.DSLContext;
+import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
 import org.jooq.impl.DefaultConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class UidAutoConfiguration {
         DefaultConfiguration configuration = new DefaultConfiguration();
         configuration.set(dataSource);
         configuration.settings().setRenderSchema(false);
+        configuration.setSQLDialect(SQLDialect.MYSQL);
         return DSL.using(configuration);
     }
 
