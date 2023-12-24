@@ -10,6 +10,7 @@
     <name>${project.artifactId}</name>
     <properties>
         <java.version>11</java.version>
+        <spring_boot_version>2.7.1</spring_boot_version>
     </properties>
     <dependencies>
         <dependency>
@@ -21,6 +22,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
             <scope>provided</scope>
+            <version>${spring_boot_version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
