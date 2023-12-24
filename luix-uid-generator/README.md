@@ -36,13 +36,10 @@ Snowflake算法的痛点就是没有完整的worker node id生成方案，本ID 
 
 ## Requirements
 
-* JDK 11 ~ 18
-* Spring Boot 2.0.0 +
+* JAVA 11 ~ 21
+* Spring Boot 2.7.0 +
 * MySQL或其他支持SQL数据库(用于分配WorkerId)
 
-## Latest version
-
-1.1.6
 
 ## Usage
 
@@ -95,7 +92,7 @@ IdGenerator.generateTimestampId();
 
 ## Official Website
 
-http://www.luixtech.cn
+https://www.luixtech.cn
 
 ## References
 
