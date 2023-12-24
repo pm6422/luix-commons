@@ -109,24 +109,15 @@ public class MysqlWorkerNodeServiceImpl implements WorkerNodeService {
 
     public Long insertAndReturnId(WorkerNode domain) {
         return dslContext.transactionResult(configuration -> {
-            DSLContext dslContext1 = DSL.using(configuration);
-//            return Objects.requireNonNull(dslContext1.insertInto(DSL.table(tableName))
-//                            .set(DSL.field("app_id"), domain.getAppId())
-//                            .set(DSL.field("host_name"), domain.getHostName())
-//                            .set(DSL.field("type"), domain.getType())
-//                            .set(DSL.field("uptime"), domain.getUptime())
-//                            .set(DSL.field("created_time"), domain.getCreatedTime())
-//                            .returningResult(DSL.field(COL_ID))
-//                            .fetchOne())
-//                    .into(Long.class);
-            dslContext1.insertInto(DSL.table(tableName))
+            DSLContext createContext = DSL.using(configuration);
+            createContext.insertInto(DSL.table(tableName))
                             .set(DSL.field("app_id"), domain.getAppId())
                             .set(DSL.field("host_name"), domain.getHostName())
                             .set(DSL.field("type"), domain.getType())
                             .set(DSL.field("uptime"), domain.getUptime())
                             .set(DSL.field("created_time"), domain.getCreatedTime())
                             .execute();
-            return dslContext1.lastID().longValue();
+            return createContext.lastID().longValue();
         });
     }
 }
