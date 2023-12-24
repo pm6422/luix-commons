@@ -6,6 +6,9 @@
 # Full reference is available at:
 # https://docs.spring.io/spring-boot/docs/2.7.1/reference/html/application-properties.html#application-properties
 # ===================================================================
+server:
+  # It can be overridden by `--server.port` value passed in the commandline or `-Dserver.port` set in `JAVA_OPTS`
+  port: 3333
 management: # Management http server configuration, used by ManagementServerProperties
   endpoints:
     web:
@@ -25,12 +28,6 @@ management: # Management http server configuration, used by ManagementServerProp
       enabled: true
     prometheus:
       enabled: true
-  metrics:
-    tags:
-      application: ${spring.application.name}
-    export:
-      prometheus:
-        enabled: true
 spring:
   application:
     name: luix-uid-generator-demo
@@ -59,9 +56,6 @@ spring:
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
-server:
-  # It can be overridden by `--server.port` value passed in the commandline or `-Dserver.port` set in `JAVA_OPTS`
-  port: 3333
 logging:
   level:
     root: INFO

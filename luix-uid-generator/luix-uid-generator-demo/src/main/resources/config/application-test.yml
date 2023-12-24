@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/luixdemo?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/luix-uid-generator-demo?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&createDatabaseIfNotExist=true
     username: root
     password:
