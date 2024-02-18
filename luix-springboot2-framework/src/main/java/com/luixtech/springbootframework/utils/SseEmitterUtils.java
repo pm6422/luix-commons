@@ -130,7 +130,7 @@ public class SseEmitterUtils {
      *
      * @return failed user IDs
      */
-    public static Set<String> pushMessagesToALlConnectedUsers(String message) {
+    public static Set<String> pushMessagesToAllConnectedUsers(String message) {
         Set<String> failedUserIds = new HashSet<>();
         USER_EMITTER_CACHE.forEach((userId, emitter) -> {
             try {
