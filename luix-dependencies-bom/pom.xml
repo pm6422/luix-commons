@@ -39,7 +39,7 @@
         <mockito_version>4.1.0</mockito_version>
         <problem_spring_web_version>0.27.0</problem_spring_web_version>
         <prometheus_version>1.9.1</prometheus_version>
-        <revision>1.2.4.0</revision>
+        <revision>1.2.4.2</revision>
         <servlet_version>3.1.0</servlet_version>
         <slf4j_version>1.7.30</slf4j_version>
         <spring_data_mongodb_version>3.4.1</spring_data_mongodb_version>
@@ -48,7 +48,7 @@
         <tomcat_embed_version>9.0.63</tomcat_embed_version>
         <transmittable_thread_local_version>2.14.2</transmittable_thread_local_version>
         <validation_version>2.0.1.Final</validation_version>
-        <swagger_version>2.2.4</swagger_version>
+        <swagger_version>2.2.19</swagger_version>
         <jasypt_version>1.9.3</jasypt_version>
     </properties>
     <dependencyManagement>
