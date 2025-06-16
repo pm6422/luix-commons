@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.apache</groupId>
-        <artifactId>apache</artifactId>
-        <version>21</version>
-        <relativePath/>
-    </parent>
     <groupId>com.luixtech</groupId>
     <artifactId>luix-dependencies-bom</artifactId>
     <version>${revision}</version>
@@ -51,6 +45,30 @@
         <swagger_version>2.2.19</swagger_version>
         <jasypt_version>1.9.3</jasypt_version>
     </properties>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:https://github.com/pm6422/luix-commons.git</connection>
+        <developerConnection>scm:git@github.com:pm6422/luix-commons.git</developerConnection>
+        <url>https://github.com/pm6422/luix-commons</url>
+    </scm>
+    <developers>
+        <developer>
+            <id>pm6422</id>
+            <name>Louis Lau</name>
+            <email>pm6422@gmail.com</email>
+        </developer>
+    </developers>
+    <distributionManagement>
+        <repository>
+            <id>sonatype-central</id>
+            <url>https://central.sonatype.com/api/v1/publish</url>
+        </repository>
+    </distributionManagement>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -288,16 +306,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.7</version>
-                <executions>
-                    <execution>
-                        <id>deploy</id>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                        <phase>deploy</phase>
-                    </execution>
-                </executions>
+                <version>3.1.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.7.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>sonatype-central</publishingServerId>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -325,20 +343,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.12</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <!-- 必须要和全局配置中的server一致 -->
-                    <serverId>ossrh</serverId>
-                    <!-- 必须要和issue的评论中给出的地址一致 -->
-                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                    <!-- 发布后自动执行close和release操作 -->
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
     <profiles>
@@ -346,14 +350,12 @@
             <id>release</id>
             <build>
                 <plugins>
-                    <!-- 生成签名，确定使用gpg秘钥 -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                         <version>3.0.1</version>
                         <executions>
                             <execution>
-                                <!-- 必须和配置中的gpg校验id一致 -->
                                 <id>gpg</id>
                                 <goals>
                                     <goal>sign</goal>
