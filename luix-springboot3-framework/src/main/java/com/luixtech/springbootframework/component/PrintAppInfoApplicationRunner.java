@@ -40,6 +40,7 @@ public class PrintAppInfoApplicationRunner implements ApplicationRunner {
                 org.springframework.util.StringUtils.arrayToCommaDelimitedString(env.getActiveProfiles()),
                 env.getProperty("PID"),
                 Charset.defaultCharset(),
+                System.getProperty("user.timezone"),
                 env.getProperty("logging.level.root"));
     }
 }
