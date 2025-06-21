@@ -27,7 +27,6 @@
         <module>luix-dependencies-bom</module>
         <module>luix-utilities</module>
         <module>luix-uid-generator</module>
-        <module>luix-springboot2-framework</module>
         <module>luix-springboot3-framework</module>
     </modules>
     <scm>
@@ -46,7 +45,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.version>3.6.2</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <revision>1.2.4.3</revision>
+        <revision>1.2.4.4</revision>
     </properties>
     <dependencyManagement>
         <dependencies>
