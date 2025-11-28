@@ -34,5 +34,14 @@
             <version>${spring_boot_version}</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Jakarta JAXB API and runtime for Java 9+ (required by libs using JAXB annotations) -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+        </dependency>
     </dependencies>
 </project>
