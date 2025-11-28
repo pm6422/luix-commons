@@ -19,8 +19,9 @@ public class PostgresEpochSecondsServiceImpl implements EpochSecondsService {
     public long getEpochSeconds() {
         if (startDate == null || startDate.isEmpty()) {
             // Fetch earliest created_time from worker node table, fallback to today
-            Record1<Long> record = dslContext.select(DSL.field("EXTRACT(EPOCH FROM MIN(created_time))").cast(Long.class))
-                    .from(DSL.table(workerNodeTableName))
+            Record1<Long> record = dslContext
+                    .select(DSL.field("cast(EXTRACT(EPOCH FROM MIN(created_time)) as bigint)").cast(Long.class).as("epoch"))
+                    .from(DSL.table("public." + workerNodeTableName))
                     .fetchOne();
             if (record != null && record.value1() != null) {
                 return record.value1();
