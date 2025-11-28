@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.0</version>
+        <version>4.0.0-M3</version>
         <relativePath/>
     </parent>
     <groupId>com.luixtech</groupId>
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>com.luixtech</groupId>
             <artifactId>luix-springboot4-framework</artifactId>
-            <version>4.0.0.0</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.luixtech</groupId>
@@ -97,6 +97,20 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <additionalProperties>
+                        <java.version>${java.version}</java.version>
+                        <spring.boot.version>${project.parent.version}</spring.boot.version>
+                    </additionalProperties>
+                </configuration>
             </plugin>
         </plugins>
     </build>

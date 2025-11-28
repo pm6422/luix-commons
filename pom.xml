@@ -98,7 +98,7 @@
                         <path>
                             <groupId>org.springframework.boot</groupId>
                             <artifactId>spring-boot-configuration-processor</artifactId>
-                            <version>4.0.0</version>
+                            <version>4.0.0-M2</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

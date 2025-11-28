@@ -12,7 +12,7 @@
     <description>Luix SpringBoot 4 framework</description>
     <properties>
         <java.version>25</java.version>
-        <spring_boot_version>4.0.0</spring_boot_version>
+        <spring_boot_version>4.0.0-M3</spring_boot_version>
     </properties>
     <dependencies>
         <dependency>
