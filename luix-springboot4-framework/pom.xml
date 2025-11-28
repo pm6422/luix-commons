@@ -12,7 +12,7 @@
     <description>Luix SpringBoot 4 framework</description>
     <properties>
         <java.version>25</java.version>
-        <spring_boot_version>4.0.0-M2</spring_boot_version>
+        <spring_boot_version>4.0.0</spring_boot_version>
     </properties>
     <dependencies>
         <dependency>
@@ -97,7 +97,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
-            <version>${spring_boot_version}</version>
+            <version>4.0.0-M2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

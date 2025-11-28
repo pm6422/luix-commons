@@ -10,7 +10,7 @@
     <name>${project.artifactId}</name>
     <properties>
         <java.version>25</java.version>
-        <spring_boot_version>4.0.0-M2</spring_boot_version>
+        <spring_boot_version>4.0.0</spring_boot_version>
     </properties>
     <dependencies>
         <dependency>
