@@ -22,12 +22,12 @@ management: # Management http server configuration, used by ManagementServerProp
           - prometheus
   endpoint:
     health:
-      enabled: true
       show-details: always
+      access: unrestricted
     metrics:
-      enabled: true
+      access: unrestricted
     prometheus:
-      enabled: true
+      access: unrestricted
 spring:
   application:
     name: luix-uid-generator-demo
