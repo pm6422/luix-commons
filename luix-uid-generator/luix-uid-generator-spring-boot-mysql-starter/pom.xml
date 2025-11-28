@@ -9,8 +9,8 @@
     <artifactId>luix-uid-generator-spring-boot-mysql-starter</artifactId>
     <name>${project.artifactId}</name>
     <properties>
-        <java.version>11</java.version>
-        <spring_boot_version>2.7.1</spring_boot_version>
+        <java.version>21</java.version>
+        <spring_boot_version>4.0.0-M2</spring_boot_version>
     </properties>
     <dependencies>
         <dependency>
@@ -21,12 +21,12 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-            <version>8.1.0</version>
+            <version>9.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.jooq</groupId>
             <artifactId>jooq</artifactId>
-            <version>3.18.7</version>
+            <version>3.19.10</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

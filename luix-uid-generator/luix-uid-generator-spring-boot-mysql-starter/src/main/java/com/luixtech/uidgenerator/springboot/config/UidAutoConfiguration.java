@@ -20,15 +20,16 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 
+@Configuration
 @ConditionalOnProperty(prefix = "luix.uid", name = "enabled", havingValue = "true", matchIfMissing = true)
-@EnableConfigurationProperties({UidProperties.class})
+@EnableConfigurationProperties({ UidProperties.class })
 @AllArgsConstructor
 public class UidAutoConfiguration {
-    private final UidProperties      uidProperties;
+    private final UidProperties uidProperties;
     private final ApplicationContext applicationContext;
 
     @Bean

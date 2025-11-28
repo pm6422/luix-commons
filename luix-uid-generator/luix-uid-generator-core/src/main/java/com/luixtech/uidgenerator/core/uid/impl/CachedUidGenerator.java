@@ -10,39 +10,47 @@ import com.luixtech.uidgenerator.core.uid.UidGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.Validate;
 
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Represents a cached implementation of {@link UidGenerator} extends
- * from {@link DefaultUidGenerator}, based on a lock free {@link RingBuffer}<p>
+ * from {@link DefaultUidGenerator}, based on a lock free {@link RingBuffer}
+ * <p>
  * <p>
  * The spring properties you can specify as below:<br>
- * <li><b>boostPower:</b> RingBuffer size boost for a power of 2, Sample: boostPower is 3, it means the buffer size
+ * <li><b>boostPower:</b> RingBuffer size boost for a power of 2, Sample:
+ * boostPower is 3, it means the buffer size
  * will be <code>({@link BitsAllocator#getMaxSequence()} + 1) &lt;&lt;
  * {@link #boostPower}</code>, Default as {@value #DEFAULT_BOOST_POWER}
- * <li><b>paddingFactor:</b> Represents a percent value of (0 - 100). When the count of rest available UIDs reach the
- * threshold, it will trigger padding buffer. Default as{@link RingBuffer#DEFAULT_PADDING_PERCENT}
- * Sample: paddingFactor=20, bufferSize=1000 -> threshold=1000 * 20 /100, padding buffer will be triggered when tail-cursor<threshold
- * <li><b>scheduleInterval:</b> Padding buffer in a schedule, specify padding buffer interval, Unit as second
- * <li><b>rejectedPutBufferHandler:</b> Policy for rejected put buffer. Default as discard put request, just do logging
- * <li><b>rejectedTakeBufferHandler:</b> Policy for rejected take buffer. Default as throwing up an exception
+ * <li><b>paddingFactor:</b> Represents a percent value of (0 - 100). When the
+ * count of rest available UIDs reach the
+ * threshold, it will trigger padding buffer. Default
+ * as{@link RingBuffer#DEFAULT_PADDING_PERCENT}
+ * Sample: paddingFactor=20, bufferSize=1000 -> threshold=1000 * 20 /100,
+ * padding buffer will be triggered when tail-cursor<threshold
+ * <li><b>scheduleInterval:</b> Padding buffer in a schedule, specify padding
+ * buffer interval, Unit as second
+ * <li><b>rejectedPutBufferHandler:</b> Policy for rejected put buffer. Default
+ * as discard put request, just do logging
+ * <li><b>rejectedTakeBufferHandler:</b> Policy for rejected take buffer.
+ * Default as throwing up an exception
  */
 @Slf4j
 public class CachedUidGenerator extends DefaultUidGenerator {
     private static final int DEFAULT_BOOST_POWER = 3;
 
-    private int  boostPower = DEFAULT_BOOST_POWER;
+    private int boostPower = DEFAULT_BOOST_POWER;
     private Long scheduleInterval;
 
-    private RejectedPutBufferHandler  rejectedPutBufferHandler;
+    private RejectedPutBufferHandler rejectedPutBufferHandler;
     private RejectedTakeBufferHandler rejectedTakeBufferHandler;
 
     /**
      * RingBuffer
      */
-    private RingBuffer            ringBuffer;
+    private RingBuffer ringBuffer;
     private BufferPaddingExecutor bufferPaddingExecutor;
 
     @Override
@@ -87,7 +95,8 @@ public class CachedUidGenerator extends DefaultUidGenerator {
         int listSize = (int) bitsAllocator.getMaxSequence() + 1;
         List<Long> uidList = new ArrayList<>(listSize);
 
-        // Allocate the first sequence of the second, the others can be calculated with the offset
+        // Allocate the first sequence of the second, the others can be calculated with
+        // the offset
         long firstSeqUid = bitsAllocator.allocate(currentSecond - epochSeconds, workerId, 0L);
         for (int offset = 0; offset < listSize; offset++) {
             uidList.add(firstSeqUid + offset);
@@ -113,7 +122,8 @@ public class CachedUidGenerator extends DefaultUidGenerator {
             bufferPaddingExecutor.setScheduleInterval(scheduleInterval);
         }
 
-        log.info("Initialized BufferPaddingExecutor with usingSchedule: {}, interval: {}", usingSchedule, scheduleInterval);
+        log.info("Initialized BufferPaddingExecutor with usingSchedule: {}, interval: {}", usingSchedule,
+                scheduleInterval);
 
         // set rejected put/take handle policy
         this.ringBuffer.setBufferPaddingExecutor(bufferPaddingExecutor);

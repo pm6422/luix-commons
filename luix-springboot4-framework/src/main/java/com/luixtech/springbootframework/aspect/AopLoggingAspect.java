@@ -1,7 +1,7 @@
 package com.luixtech.springbootframework.aspect;
 
 import com.alibaba.fastjson2.JSON;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.luixtech.springbootframework.config.LuixProperties;
 import com.luixtech.springbootframework.utils.TraceIdUtils;
 import jakarta.servlet.ServletRequest;
@@ -38,8 +38,8 @@ import java.util.Map;
 @Configuration
 @AllArgsConstructor
 public class AopLoggingAspect {
-    private static final String         UNKNOWN_ARG_VAL = "UNKNOWN";
-    private final        LuixProperties luixProperties;
+    private static final String UNKNOWN_ARG_VAL = "UNKNOWN";
+    private final LuixProperties luixProperties;
 
     /**
      * Advice that logs methods throwing exceptions
@@ -65,7 +65,8 @@ public class AopLoggingAspect {
      */
     @Around("within(@org.springframework.web.bind.annotation.RestController *)")
     public Object logController(ProceedingJoinPoint joinPoint) throws Throwable {
-        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder
+                .getRequestAttributes();
         HttpServletRequest request = servletRequestAttributes != null ? servletRequestAttributes.getRequest() : null;
         HttpServletResponse response = servletRequestAttributes != null ? servletRequestAttributes.getResponse() : null;
         // Get traceId from http request

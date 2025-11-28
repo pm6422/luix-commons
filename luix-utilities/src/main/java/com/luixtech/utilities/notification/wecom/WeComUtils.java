@@ -1,6 +1,6 @@
 package com.luixtech.utilities.notification.wecom;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import com.google.common.net.HttpHeaders;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,8 @@ public abstract class WeComUtils {
     private static final String ROBOT_WEBHOOK_URL = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={0}";
 
     @SneakyThrows
-    public static HttpResponse<String> sendMessage(String webhookKey, Duration timeout, WeComRobotMsgRequest requestBody) {
+    public static HttpResponse<String> sendMessage(String webhookKey, Duration timeout,
+            WeComRobotMsgRequest requestBody) {
         ObjectMapper mapper = new ObjectMapper();
         String requestJson = mapper.writeValueAsString(requestBody);
         HttpRequest request = HttpRequest.newBuilder()
