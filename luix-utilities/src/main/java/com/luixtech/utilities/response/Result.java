@@ -14,9 +14,9 @@ import static com.luixtech.utilities.response.Result.ResultCode.*;
 @AllArgsConstructor
 @Schema(description = "Result object")
 public class Result<T> {
-    @Schema(description = "code", example = "SYS0000", required = true)
+    @Schema(description = "code", example = "SYS0000")
     private String code;
-    @Schema(description = "message", example = "ok", required = true)
+    @Schema(description = "message", example = "ok")
     private String message;
     @Schema(description = "data")
     private T      data;

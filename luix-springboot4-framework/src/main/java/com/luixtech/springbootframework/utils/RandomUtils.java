@@ -1,6 +1,6 @@
 package com.luixtech.springbootframework.utils;
 
-import org.apache.commons.lang3.RandomStringUtils;
+import java.security.SecureRandom;
 
 public abstract class RandomUtils {
 
@@ -11,8 +11,12 @@ public abstract class RandomUtils {
      *
      * @return the generated password
      */
+    private static final String ALPHANUM = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    private static final String DIGITS   = "0123456789";
+    private static final SecureRandom SECURE_RANDOM = new SecureRandom();
+
     public static String generatePassword() {
-        return RandomStringUtils.randomAlphanumeric(LENGTH);
+        return randomFromAlphabet(LENGTH, ALPHANUM);
     }
 
     /**
@@ -21,7 +25,7 @@ public abstract class RandomUtils {
      * @return the generated activation key
      */
     public static String generateActivationKey() {
-        return RandomStringUtils.randomNumeric(LENGTH);
+        return randomFromAlphabet(LENGTH, DIGITS);
     }
 
     /**
@@ -30,6 +34,15 @@ public abstract class RandomUtils {
      * @return the generated reset key
      */
     public static String generateResetKey() {
-        return RandomStringUtils.randomNumeric(LENGTH);
+        return randomFromAlphabet(LENGTH, DIGITS);
+    }
+
+    private static String randomFromAlphabet(int length, String alphabet) {
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int idx = SECURE_RANDOM.nextInt(alphabet.length());
+            sb.append(alphabet.charAt(idx));
+        }
+        return sb.toString();
     }
 }

@@ -12,8 +12,8 @@
     <description>Luix UID Generator</description>
     <modules>
         <module>luix-uid-generator-core</module>
-        <module>luix-uid-generator-spring-boot-mysql-starter</module>
         <module>luix-uid-generator-spring-boot-mongo-starter</module>
+        <module>luix-uid-generator-spring-boot-postgresql-starter</module>
         <module>luix-uid-generator-demo</module>
     </modules>
 </project>

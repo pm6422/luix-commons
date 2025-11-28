@@ -7,7 +7,6 @@ import lombok.ToString;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import java.io.Serializable;
 import java.time.Instant;
 
 /**
@@ -16,7 +15,7 @@ import java.time.Instant;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public abstract class AbstractAuditableDomain extends AbstractCreationDomain implements Serializable {
+public abstract class AbstractAuditableDomain extends AbstractCreationDomain {
 
     private static final long   serialVersionUID    = 1L;
     public static final  String FIELD_MODIFIED_BY   = "modifiedBy";
@@ -33,6 +32,6 @@ public abstract class AbstractAuditableDomain extends AbstractCreationDomain imp
      * Set the current time when updating.
      */
     @LastModifiedDate
-    @Schema(description = "更新时间", required = true)
+    @Schema(description = "更新时间")
     protected Instant modifiedTime;
 }

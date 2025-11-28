@@ -8,7 +8,6 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 
-import java.io.Serializable;
 import java.time.Instant;
 
 /**
@@ -17,7 +16,7 @@ import java.time.Instant;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public abstract class AbstractCreationDomain extends AbstractMultiTenancyDomain implements Serializable {
+public abstract class AbstractCreationDomain extends AbstractMultiTenancyDomain {
 
     private static final long   serialVersionUID   = 1L;
     public static final  String FIELD_ID           = "id";
@@ -30,7 +29,7 @@ public abstract class AbstractCreationDomain extends AbstractMultiTenancyDomain 
      * If id is null, save operation equals insert, or else save operation equals update
      */
     @Id
-    @Schema(description = "ID主键", required = true)
+    @Schema(description = "ID主键")
     protected String id;
 
     /**
@@ -44,6 +43,6 @@ public abstract class AbstractCreationDomain extends AbstractMultiTenancyDomain 
      * Set the current time when inserting.
      */
     @CreatedDate
-    @Schema(description = "创建时间", required = true)
+    @Schema(description = "创建时间")
     protected Instant createdTime;
 }

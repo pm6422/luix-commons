@@ -6,8 +6,8 @@ import com.luixtech.uidgenerator.core.uid.impl.CachedUidGenerator;
 import com.luixtech.uidgenerator.core.worker.DefaultWorkerIdAssigner;
 import com.luixtech.uidgenerator.core.worker.WorkerIdAssigner;
 import com.luixtech.uidgenerator.core.worker.WorkerNodeService;
-import com.luixtech.uidgenerator.springboot.epochseconds.MysqlEpochSecondsServiceImpl;
-import com.luixtech.uidgenerator.springboot.worker.MysqlWorkerNodeServiceImpl;
+import com.luixtech.uidgenerator.springboot.epochseconds.PostgresEpochSecondsServiceImpl;
+import com.luixtech.uidgenerator.springboot.worker.PostgresWorkerNodeServiceImpl;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.Validate;
 import org.jooq.DSLContext;
@@ -39,18 +39,18 @@ public class UidAutoConfiguration {
         DefaultConfiguration configuration = new DefaultConfiguration();
         configuration.set(dataSource);
         configuration.settings().setRenderSchema(false);
-        configuration.setSQLDialect(SQLDialect.MYSQL);
+        configuration.setSQLDialect(SQLDialect.POSTGRES);
         return DSL.using(configuration);
     }
 
     @Bean
-    public WorkerNodeService mysqlWorkerNodeService(@Autowired @Qualifier("luixDslContext") DSLContext dslContext) {
-        return new MysqlWorkerNodeServiceImpl(uidProperties.getWorker().getWorkerNodeTableName(), dslContext);
+    public WorkerNodeService postgresWorkerNodeService(@Autowired @Qualifier("luixDslContext") DSLContext dslContext) {
+        return new PostgresWorkerNodeServiceImpl(uidProperties.getWorker().getWorkerNodeTableName(), dslContext);
     }
 
     @Bean
-    public EpochSecondsService mysqlEpochSecondsService(@Autowired @Qualifier("luixDslContext") DSLContext dslContext) {
-        return new MysqlEpochSecondsServiceImpl(uidProperties.getWorker().getWorkerNodeTableName(), dslContext,
+    public EpochSecondsService postgresEpochSecondsService(@Autowired @Qualifier("luixDslContext") DSLContext dslContext) {
+        return new PostgresEpochSecondsServiceImpl(uidProperties.getWorker().getWorkerNodeTableName(), dslContext,
                 uidProperties.getEpochSeconds().getStartDate());
     }
 

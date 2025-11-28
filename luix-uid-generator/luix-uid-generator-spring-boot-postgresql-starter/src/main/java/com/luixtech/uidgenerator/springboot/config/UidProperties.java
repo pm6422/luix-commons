@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * Properties of UID generator.
+ * Properties of UID generator for PostgreSQL starter.
  */
 @ConfigurationProperties(prefix = "luix.uid")
 @Data
@@ -44,7 +44,7 @@ public class UidProperties implements InitializingBean {
     public static class Worker {
         private boolean autoCreateWorkerNodeTable = true;
         private String  workerNodeTableName       = "id_generator_worker_node";
-        private String  workerNodeServiceName     = "mysqlWorkerNodeService";
+        private String  workerNodeServiceName     = "postgresWorkerNodeService";
         private String  workerIdAssignerName      = "defaultWorkerIdAssigner";
         private String  appId;
     }
@@ -55,7 +55,7 @@ public class UidProperties implements InitializingBean {
          * 起始时间，也就是应用第一次使用本uid generator的时间，格式为：yyyy-MM-dd，如：2022-02-01
          */
         private String startDate;
-        private String epochSecondsServiceName = "mysqlEpochSecondsService";
+        private String epochSecondsServiceName = "postgresEpochSecondsService";
     }
 
     @Data

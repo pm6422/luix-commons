@@ -17,10 +17,12 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.context.annotation.Configuration;
 
 @ConditionalOnProperty(prefix = "luix.uid", name = "enabled", havingValue = "true", matchIfMissing = true)
 @EnableConfigurationProperties({UidProperties.class})
 @AllArgsConstructor
+@Configuration
 public class UidAutoConfiguration {
     private final UidProperties      uidProperties;
     private final ApplicationContext applicationContext;

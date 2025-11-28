@@ -6,7 +6,7 @@
         <artifactId>luix-uid-generator</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>luix-uid-generator-spring-boot-mysql-starter</artifactId>
+    <artifactId>luix-uid-generator-spring-boot-postgresql-starter</artifactId>
     <name>${project.artifactId}</name>
     <properties>
         <java.version>25</java.version>
@@ -19,14 +19,14 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>9.0.0</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.4</version>
         </dependency>
         <dependency>
             <groupId>org.jooq</groupId>
             <artifactId>jooq</artifactId>
-            <version>3.19.10</version>
+            <version>3.20.9</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -38,7 +38,7 @@
         </dependency>
         <dependency>
             <groupId>com.luixtech</groupId>
-            <artifactId>luix-uid-generator-spring-boot-mysql-starter</artifactId>
+            <artifactId>luix-uid-generator-spring-boot-postgresql-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

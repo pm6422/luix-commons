@@ -3,7 +3,6 @@ package com.luixtech.utilities.exception;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.Iterator;
 import java.util.Map;
 
 @Data

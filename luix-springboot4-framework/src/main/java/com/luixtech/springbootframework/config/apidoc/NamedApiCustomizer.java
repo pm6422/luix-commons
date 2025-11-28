@@ -10,8 +10,6 @@ import lombok.Getter;
 import org.springdoc.core.customizers.OpenApiCustomizer;
 import org.springframework.core.Ordered;
 
-import static org.apache.commons.lang3.StringUtils.defaultIfEmpty;
-
 /**
  * AnApi customizer to set up {@link io.swagger.v3.oas.models.OpenAPI}.
  */

@@ -36,9 +36,9 @@ Snowflake算法的痛点就是没有完整的worker node id生成方案，本ID 
 
 ## Requirements
 
-* JAVA 11 ~ 21
-* Spring Boot 2.7.0 +
-* MySQL或其他支持SQL数据库(用于分配WorkerId)
+* JAVA 25
+* Spring Boot 4.0 +
+* PostgreSQL或其他支持SQL数据库(用于分配WorkerId)
 
 
 ## Usage
@@ -48,7 +48,7 @@ Snowflake算法的痛点就是没有完整的worker node id生成方案，本ID 
 ```
 <dependency>
     <groupId>com.luixtech</groupId>
-    <artifactId>luix-uid-generator-spring-boot-starter</artifactId>
+    <artifactId>luix-uid-generator-spring-boot-postgresql-starter</artifactId>
     <version>${latestVersion}</version>
 </dependency>
 ```
@@ -56,12 +56,13 @@ Snowflake算法的痛点就是没有完整的worker node id生成方案，本ID 
 2. yml配置文件中增加配置信息，配置参数参见com.luixtech.uidgenerator.springboot.config.UidProperties
 
 ```
-uid:
+luix:
+  uid:
     worker:
-        appId: ${spring.application.name}
+      appId: ${spring.application.name}
 ```
 
-系统启动式会自动创建mysql的worker ID表，如果不需要自动创建可以将uid.worker.autoCreateWorkerNodeTable设置为false
+系统启动时会自动创建PostgreSQL的worker ID表，如果不需要自动创建可以将`luix.uid.worker.autoCreateWorkerNodeTable`设置为`false`
 
 3. 加上注解@EnableUidGenerator
 
