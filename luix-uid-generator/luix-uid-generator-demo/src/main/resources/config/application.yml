@@ -2,13 +2,13 @@
 # Spring Boot configuration.
 #
 # This configuration will be overridden by the Spring profile you use,
-# for example application-dev.yml if you use the "dev" profile.
+# for the example application-dev.yml if you use the "dev" profile.
 # Full reference is available at:
 # https://docs.spring.io/spring-boot/docs/3.2.0/reference/html/application-properties.html#application-properties
 # ===================================================================
 server:
   # It can be overridden by `--server.port` value passed in the commandline or `-Dserver.port` set in `JAVA_OPTS`
-  port: 3333
+  port: 3210
 management: # Management http server configuration, used by ManagementServerProperties
   endpoints:
     web:
