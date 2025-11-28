@@ -17,6 +17,7 @@
         <maven.version>3.9.11</maven.version>
         <start-class>com.luixtech.uidgenerator.demo.LuixUidDemoApplication</start-class>
         <maven.deploy.skip>true</maven.deploy.skip>
+        <lombok_version>1.18.42</lombok_version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -30,6 +31,11 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>com.luixtech</groupId>
             <artifactId>luix-springboot4-framework</artifactId>
@@ -55,9 +61,14 @@
                     <release>${java.version}</release>
                     <annotationProcessorPaths>
                         <path>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                            <version>${project.parent.version}</version>
+                        </path>
+                        <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>1.18.42</version>
+                            <version>${lombok_version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
