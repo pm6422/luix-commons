@@ -4,7 +4,7 @@
 # This configuration will be overridden by the Spring profile you use,
 # for the example application-dev.yml if you use the "dev" profile.
 # Full reference is available at:
-# https://docs.spring.io/spring-boot/docs/3.2.0/reference/html/application-properties.html#application-properties
+# https://docs.spring.io/spring-boot/docs/4.0.0-M2/reference/html/application-properties.html#application-properties
 # ===================================================================
 server:
   # It can be overridden by `--server.port` value passed in the commandline or `-Dserver.port` set in `JAVA_OPTS`
@@ -56,6 +56,9 @@ spring:
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
+  threads:
+    virtual:
+      enabled: true
 logging:
   level:
     root: INFO
@@ -67,6 +70,8 @@ logging:
     jdk.event.security: WARN
 springdoc: # https://springdoc.org/#migrating-from-springfox
   api-docs:
+    enabled: true
+  swagger-ui:
     enabled: true
   show-actuator: true
 # ===================================================================
