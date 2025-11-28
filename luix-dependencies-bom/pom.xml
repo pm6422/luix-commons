@@ -26,7 +26,7 @@
         <junit_version>4.13.2</junit_version>
         <log4j2_version>2.24.1</log4j2_version>
         <logback_version>1.5.13</logback_version>
-        <lombok_version>1.18.40</lombok_version>
+        <lombok_version>1.18.42</lombok_version>
         <maven_flatten_pluggin_version>1.7.3</maven_flatten_pluggin_version>
         <metrics_spring_version>3.1.3</metrics_spring_version>
         <micrometer_version>1.16.0</micrometer_version>
