@@ -37,7 +37,6 @@
         <servlet_version>6.1.0</servlet_version>
         <slf4j_version>2.0.16</slf4j_version>
         <spring_data_mongodb_version>5.0.0</spring_data_mongodb_version>
-        <spring_filter_version>2.1.6</spring_filter_version>
         <springdoc_version>3.0.0</springdoc_version>
         <tomcat_embed_version>11.0.0</tomcat_embed_version>
         <transmittable_thread_local_version>2.14.5</transmittable_thread_local_version>
@@ -115,11 +114,6 @@
                 <groupId>com.ryantenney.metrics</groupId>
                 <artifactId>metrics-spring</artifactId>
                 <version>${metrics_spring_version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.turkraft</groupId>
-                <artifactId>spring-filter</artifactId>
-                <version>${spring_filter_version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-io</groupId>
