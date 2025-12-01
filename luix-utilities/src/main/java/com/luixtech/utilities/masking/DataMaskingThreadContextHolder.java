@@ -1,9 +1,12 @@
 package com.luixtech.utilities.masking;
 
-import com.alibaba.ttl.TransmittableThreadLocal;
-
 public abstract class DataMaskingThreadContextHolder {
-    private static final TransmittableThreadLocal<Boolean> HOLDER = TransmittableThreadLocal.withInitial(() -> true);
+    private static final ThreadLocal<Boolean> HOLDER = new InheritableThreadLocal<>() {
+        @Override
+        protected Boolean initialValue() {
+            return true;
+        }
+    };
 
     public static Boolean getMaskEnabled() {
         return HOLDER.get();
