@@ -39,7 +39,6 @@
             <groupId>org.jasypt</groupId>
             <artifactId>jasypt</artifactId>
         </dependency>
-        <!--Do NOT upgrade to the latest version, because it can import more dependencies-->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
