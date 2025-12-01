@@ -69,12 +69,19 @@ public class AopLoggingAspect {
                 .getRequestAttributes();
         HttpServletRequest request = servletRequestAttributes != null ? servletRequestAttributes.getRequest() : null;
         HttpServletResponse response = servletRequestAttributes != null ? servletRequestAttributes.getResponse() : null;
-        // Get traceId from http request
-        TraceIdUtils.setTraceId(request);
+        // Get or generate traceId
+        String traceId = request != null ? request.getHeader("X-Trace-Id") : null;
+        if (traceId == null || traceId.isEmpty()) {
+            traceId = TraceIdUtils.generateTraceId();
+        } else {
+            TraceIdUtils.setTraceId(traceId);
+        }
         beforeRun(joinPoint);
         Object result = joinPoint.proceed();
-        // Set traceId to http response
-        TraceIdUtils.setTraceId(response);
+        // Set traceId to http response header
+        if (response != null) {
+            response.setHeader("X-Trace-Id", traceId);
+        }
         afterRun(joinPoint, result);
         TraceIdUtils.remove();
         return result;
