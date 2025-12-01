@@ -235,7 +235,6 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok_version}</version>
             </dependency>
-            <!-- Log libs -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
