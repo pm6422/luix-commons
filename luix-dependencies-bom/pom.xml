@@ -44,6 +44,7 @@
         <jasypt_version>1.9.3</jasypt_version>
         <jakarta_xml_bind_version>4.0.2</jakarta_xml_bind_version>
         <jaxb_runtime_version>4.0.5</jaxb_runtime_version>
+        <htmlunit_version>4.19.0</htmlunit_version>
     </properties>
     <licenses>
         <license>
@@ -180,6 +181,11 @@
                 <groupId>jakarta.validation</groupId>
                 <artifactId>jakarta.validation-api</artifactId>
                 <version>${validation_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.htmlunit</groupId>
+                <artifactId>htmlunit</artifactId>
+                <version>${htmlunit_version}</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
