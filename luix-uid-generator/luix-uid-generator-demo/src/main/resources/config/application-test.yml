@@ -1,6 +1,0 @@
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/luix_uid_generator_demo
-    username: postgres
-    password:
-    driver-class-name: org.postgresql.Driver
