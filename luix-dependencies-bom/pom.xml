@@ -34,6 +34,8 @@
         <prometheus_version>1.14.0</prometheus_version>
         <servlet_version>6.1.0</servlet_version>
         <slf4j_version>2.0.16</slf4j_version>
+        <spring_boot_version>4.0.0-M2</spring_boot_version>
+        <spring_data_commons_version>4.0.0</spring_data_commons_version>
         <spring_data_mongodb_version>5.0.0</spring_data_mongodb_version>
         <springdoc_version>3.0.0</springdoc_version>
         <validation_version>3.1.0</validation_version>
@@ -248,6 +250,31 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
                 <version>${springdoc_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+                <version>${spring_boot_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${spring_boot_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>${spring_boot_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring_boot_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-commons</artifactId>
+                <version>${spring_data_commons_version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
