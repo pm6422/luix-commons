@@ -38,7 +38,6 @@
         <slf4j_version>2.0.16</slf4j_version>
         <spring_data_mongodb_version>5.0.0</spring_data_mongodb_version>
         <springdoc_version>3.0.0</springdoc_version>
-        <transmittable_thread_local_version>2.14.5</transmittable_thread_local_version>
         <validation_version>3.1.0</validation_version>
         <swagger_version>2.2.25</swagger_version>
         <jasypt_version>1.9.3</jasypt_version>
@@ -86,11 +85,6 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback_version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>transmittable-thread-local</artifactId>
-                <version>${transmittable_thread_local_version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.fastjson2</groupId>
@@ -282,7 +276,6 @@
         </dependencyManagement>
     <build>
         <plugins>
-            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
