@@ -9,9 +9,6 @@
     <artifactId>luix-utilities</artifactId>
     <name>${project.artifactId}</name>
     <description>Luix utilities</description>
-    <properties>
-        <java.version>25</java.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.assertj</groupId>

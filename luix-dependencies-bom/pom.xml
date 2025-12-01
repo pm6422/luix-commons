@@ -19,7 +19,6 @@
         <hibernate_validator_version>9.0.0.Final</hibernate_validator_version>
         <jackson_version>3.0.0</jackson_version>
         <jakarta_annotation_version>3.0.0</jakarta_annotation_version>
-        <java.version>25</java.version>
         <jjwt_version>0.12.6</jjwt_version>
         <jsr305_version>3.0.2</jsr305_version>
         <junit_jupiter_version>5.11.3</junit_jupiter_version>

@@ -11,7 +11,6 @@
     <name>${project.artifactId}</name>
     <description>Luix SpringBoot 4 framework</description>
     <properties>
-        <java.version>25</java.version>
         <spring_boot_version>4.0.0-M3</spring_boot_version>
     </properties>
     <dependencies>
