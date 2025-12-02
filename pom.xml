@@ -41,9 +41,9 @@
     </distributionManagement>
     <properties>
         <java.version>25</java.version>
-        <spring_boot_version>4.0.0-M2</spring_boot_version>
         <maven.version>3.9.11</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring_boot_version>4.0.0-M2</spring_boot_version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -83,7 +83,7 @@
         </pluginManagement>
         <plugins>
             <plugin>
-            <groupId>com.github.ekryd.sortpom</groupId>
+                <groupId>com.github.ekryd.sortpom</groupId>
                 <artifactId>sortpom-maven-plugin</artifactId>
                 <version>4.0.0</version>
                 <inherited>true</inherited>
@@ -103,7 +103,7 @@
                         <goals>
                             <goal>sort</goal>
                         </goals>
-                        <phase>verify</phase>
+                        <phase>validate</phase>
                     </execution>
                 </executions>
             </plugin>
