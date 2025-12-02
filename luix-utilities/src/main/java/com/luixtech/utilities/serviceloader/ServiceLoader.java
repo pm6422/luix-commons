@@ -99,7 +99,7 @@ public class ServiceLoader<T> {
         ServiceLoader<T> loader = (ServiceLoader<T>) SERVICE_LOADERS_CACHE.get(serviceInterface.getName());
         if (loader == null) {
             // Load all the implementation classes
-            loader = new ServiceLoader<>(Thread.currentThread().getContextClassLoader(), serviceInterface);
+            loader = new ServiceLoader<>(serviceInterface.getClassLoader(), serviceInterface);
             SERVICE_LOADERS_CACHE.put(serviceInterface.getName(), loader);
         }
         return loader;
@@ -112,7 +112,9 @@ public class ServiceLoader<T> {
      * @param serviceInterface service interface
      */
     private ServiceLoader(ClassLoader classLoader, Class<T> serviceInterface) {
-        this.classLoader = classLoader;
+        ClassLoader preferred = serviceInterface != null ? serviceInterface.getClassLoader() : null;
+        this.classLoader = preferred != null ? preferred :
+                (classLoader != null ? classLoader : Thread.currentThread().getContextClassLoader());
         this.serviceInterface = serviceInterface;
         // Load all the implementation classes
         this.serviceImplClasses = loadImplClasses();
