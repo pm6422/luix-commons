@@ -33,6 +33,7 @@
     </repository>
   </distributionManagement>
   <properties>
+    <tsid_creator_version>5.2.6</tsid_creator_version>
     <assertj_version>3.26.3</assertj_version>
     <commons_collections4_version>4.5.0-M2</commons_collections4_version>
     <commons_io_version>2.18.0</commons_io_version>
@@ -71,6 +72,14 @@
   </properties>
   <dependencyManagement>
     <dependencies>
+      <!-- Import Spring Boot's BOM so that core libs like hibernate-core are version-managed -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring_boot_version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <dependency>
         <groupId>org.jasypt</groupId>
         <artifactId>jasypt</artifactId>
@@ -295,6 +304,12 @@
         <groupId>org.glassfish.jaxb</groupId>
         <artifactId>jaxb-runtime</artifactId>
         <version>${jaxb_runtime_version}</version>
+      </dependency>
+      <!-- tsid-creator managed here so modules can omit explicit version -->
+      <dependency>
+        <groupId>com.github.f4b6a3</groupId>
+        <artifactId>tsid-creator</artifactId>
+        <version>${tsid_creator_version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
