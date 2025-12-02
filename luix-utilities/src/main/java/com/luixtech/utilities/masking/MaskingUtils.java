@@ -32,9 +32,10 @@ public abstract class MaskingUtils {
         if (StringUtils.isBlank(id)) {
             return StringUtils.EMPTY;
         }
-        return StringUtils.left(id, 3).concat(StringUtils
-                .removeStart(StringUtils.leftPad(StringUtils.right(id, 4), StringUtils.length(id), "*"),
-                        "***"));
+        String paddedLast4 = StringUtils.leftPad(StringUtils.right(id, 4), StringUtils.length(id), '*');
+        String starPrefix = "*".repeat(3);
+        String tail = paddedLast4.startsWith(starPrefix) ? paddedLast4.substring(starPrefix.length()) : paddedLast4;
+        return StringUtils.left(id, 3).concat(tail);
     }
 
     /**
@@ -54,9 +55,10 @@ public abstract class MaskingUtils {
         if (StringUtils.isBlank(num)) {
             return StringUtils.EMPTY;
         }
-        return StringUtils.left(num, 3).concat(StringUtils
-                .removeStart(StringUtils.leftPad(StringUtils.right(num, 4), StringUtils.length(num), "*"),
-                        "***"));
+        String paddedLast4 = StringUtils.leftPad(StringUtils.right(num, 4), StringUtils.length(num), '*');
+        String starPrefix = "*".repeat(3);
+        String tail = paddedLast4.startsWith(starPrefix) ? paddedLast4.substring(starPrefix.length()) : paddedLast4;
+        return StringUtils.left(num, 3).concat(tail);
 
     }
 
@@ -81,7 +83,7 @@ public abstract class MaskingUtils {
         if (StringUtils.isBlank(email)) {
             return StringUtils.EMPTY;
         }
-        final int index = StringUtils.indexOf(email, "@");
+        final int index = email.indexOf('@');
         if (index <= 1) {
             return email;
         } else {
@@ -97,9 +99,10 @@ public abstract class MaskingUtils {
         if (StringUtils.isBlank(cardNum)) {
             return StringUtils.EMPTY;
         }
-        return StringUtils.left(cardNum, 6).concat(StringUtils.removeStart(
-                StringUtils.leftPad(StringUtils.right(cardNum, 4), StringUtils.length(cardNum), "*"),
-                "******"));
+        String paddedLast4 = StringUtils.leftPad(StringUtils.right(cardNum, 4), StringUtils.length(cardNum), '*');
+        String starPrefix = "*".repeat(6);
+        String tail = paddedLast4.startsWith(starPrefix) ? paddedLast4.substring(starPrefix.length()) : paddedLast4;
+        return StringUtils.left(cardNum, 6).concat(tail);
     }
 
     /**
