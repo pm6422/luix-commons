@@ -1,7 +1,6 @@
 package com.luixtech.utilities.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,13 +11,9 @@ import static com.luixtech.utilities.response.Result.ResultCode.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(description = "Result object")
 public class Result<T> {
-    @Schema(description = "code", example = "SYS0000")
     private String code;
-    @Schema(description = "message", example = "ok")
     private String message;
-    @Schema(description = "data")
     private T      data;
 
     public Result(ResultCode resultCode) {
