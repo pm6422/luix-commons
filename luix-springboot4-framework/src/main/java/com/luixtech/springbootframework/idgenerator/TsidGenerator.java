@@ -1,15 +1,14 @@
 package com.luixtech.springbootframework.idgenerator;
 
-import org.hibernate.engine.spi.SharedSessionContractImplementor;
-import org.hibernate.id.IdentifierGenerator;
-import java.io.Serializable;
+import org.hibernate.annotations.IdGeneratorType;
 
-import com.github.f4b6a3.tsid.TsidCreator;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-public class TsidGenerator implements IdentifierGenerator {
-
-    @Override
-    public Serializable generate(SharedSessionContractImplementor session, Object obj) {
-        return TsidCreator.getTsid().toLong();
-    }
+@IdGeneratorType(TsidLongStringGenerator.class)
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.FIELD})
+public @interface TsidGenerator {
 }
