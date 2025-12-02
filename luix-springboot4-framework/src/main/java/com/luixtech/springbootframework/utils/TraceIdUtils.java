@@ -1,5 +1,7 @@
 package com.luixtech.springbootframework.utils;
 
+import com.github.f4b6a3.tsid.TsidCreator;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 
 import java.util.Map;
@@ -18,7 +20,7 @@ public class TraceIdUtils {
      * @return the generated trace ID
      */
     public static String generateTraceId() {
-        String traceId = UUID.randomUUID().toString().replace("-", "");
+        String traceId = "T" + TsidCreator.getTsid().toLong();
         MDC.put(TRACE_ID_KEY, traceId);
         return traceId;
     }
