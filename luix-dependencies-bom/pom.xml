@@ -60,8 +60,6 @@
     <servlet_version>6.1.0</servlet_version>
     <slf4j_version>2.0.16</slf4j_version>
     <spring_boot_version>4.0.0-M2</spring_boot_version>
-    <spring_data_commons_version>4.0.0</spring_data_commons_version>
-    <spring_data_mongodb_version>5.0.0</spring_data_mongodb_version>
     <springdoc_version>3.0.0</springdoc_version>
     <validation_version>3.1.0</validation_version>
     <swagger_version>2.2.25</swagger_version>
@@ -280,16 +278,7 @@
         <artifactId>spring-boot-starter-web</artifactId>
         <version>${spring_boot_version}</version>
       </dependency>
-      <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-commons</artifactId>
-        <version>${spring_data_commons_version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-mongodb</artifactId>
-        <version>${spring_data_mongodb_version}</version>
-      </dependency>
+      <!-- Spring Data versions are managed via Spring Boot BOM import -->
       <dependency>
         <groupId>org.zalando</groupId>
         <artifactId>problem-spring-web</artifactId>
