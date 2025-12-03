@@ -1,11 +1,9 @@
 package com.luixtech.springbootframework.utils;
 
 import com.github.f4b6a3.tsid.TsidCreator;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Utility class for managing trace IDs in distributed systems.

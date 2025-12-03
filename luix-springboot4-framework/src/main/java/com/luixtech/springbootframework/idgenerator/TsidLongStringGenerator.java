@@ -9,6 +9,12 @@ import java.io.Serializable;
 
 public class TsidLongStringGenerator implements IdentifierGenerator {
 
+    /**
+     * Generate a unique 17-digit string ID
+     * @param session
+     * @param obj
+     * @return
+     */
     @Override
     public Serializable generate(SharedSessionContractImplementor session, Object obj) {
         return StringUtils.EMPTY + TsidCreator.getTsid().toLong();
