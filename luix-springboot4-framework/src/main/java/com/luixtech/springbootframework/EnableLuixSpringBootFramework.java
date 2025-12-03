@@ -6,6 +6,7 @@ import com.luixtech.springbootframework.aspect.ExceptionTranslatorAdviceAspect;
 import com.luixtech.springbootframework.component.HttpHeaderCreator;
 import com.luixtech.springbootframework.component.MessageCreator;
 import com.luixtech.springbootframework.component.PrintAppInfoApplicationRunner;
+import com.luixtech.springbootframework.component.SseNotifier;
 import com.luixtech.springbootframework.config.AsyncConfiguration;
 import com.luixtech.springbootframework.config.LocaleConfiguration;
 import com.luixtech.springbootframework.config.LuixProperties;
@@ -22,8 +23,10 @@ import java.lang.annotation.*;
 @Documented
 @Import({AopLoggingAspect.class, ElapsedTimeLoggingAspect.class, ExceptionTranslatorAdviceAspect.class,
         HttpHeaderCreator.class, MessageCreator.class, PrintAppInfoApplicationRunner.class,
-        AsyncConfiguration.class, LocaleConfiguration.class, LuixProperties.class, OpenApiEndpointConfiguration.class,
-        SpringDocAutoConfiguration.class, AppInfoContributorConfiguration.class, LuixMetricsEndpointConfiguration.class})
+        SseNotifier.class, AsyncConfiguration.class, LocaleConfiguration.class, LuixProperties.class,
+        OpenApiEndpointConfiguration.class,
+        SpringDocAutoConfiguration.class, AppInfoContributorConfiguration.class,
+        LuixMetricsEndpointConfiguration.class})
 public @interface EnableLuixSpringBootFramework {
 
 }
