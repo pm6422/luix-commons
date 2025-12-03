@@ -11,9 +11,9 @@ public class TsidLongStringGenerator implements IdentifierGenerator {
 
     /**
      * Generate a unique 17-digit string ID
-     * @param session
-     * @param obj
-     * @return
+     * @param session the session
+     * @param obj the object
+     * @return the generated ID
      */
     @Override
     public Serializable generate(SharedSessionContractImplementor session, Object obj) {
