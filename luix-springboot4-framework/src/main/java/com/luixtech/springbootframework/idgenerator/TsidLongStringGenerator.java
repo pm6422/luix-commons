@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class TsidLongStringGenerator implements IdentifierGenerator {
 
     /**
-     * Generate a unique 17-digit string ID
+     * Generate a unique 18-digit string ID
      * @param session the session
      * @param obj the object
      * @return the generated ID
