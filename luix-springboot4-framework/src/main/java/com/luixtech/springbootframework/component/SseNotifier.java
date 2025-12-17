@@ -1,6 +1,7 @@
 package com.luixtech.springbootframework.component;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -30,13 +34,13 @@ public class SseNotifier implements InitializingBean, DisposableBean {
       // Default to local distribution if no distributed implementation is provided
       sseDistributor = new SseDistributor() {
         @Override
-        public void distribute(String userId, String content) {
-          sendLocal(userId, content);
+        public void distribute(SseMessage message) {
+          sendLocal(message);
         }
 
         @Override
-        public void broadcast(String content) {
-          broadcastLocal(content);
+        public void broadcast(SseMessage message) {
+          broadcastLocal(message);
         }
       };
       log.info("No SseDistributor bean found, using default local distribution.");
@@ -79,19 +83,18 @@ public class SseNotifier implements InitializingBean, DisposableBean {
    */
   public interface SseDistributor {
     /**
-     * Distribute a message to a specific user across the cluster.
+     * Distribute a message to specific users across the cluster.
      *
-     * @param userId  target user ID
-     * @param content message content
+     * @param message message object containing target user IDs
      */
-    void distribute(String userId, String content);
+    void distribute(SseMessage message);
 
     /**
      * Broadcast a message to all users across the cluster.
      *
-     * @param content message content
+     * @param message message object
      */
-    void broadcast(String content);
+    void broadcast(SseMessage message);
   }
 
   /**
@@ -116,14 +119,37 @@ public class SseNotifier implements InitializingBean, DisposableBean {
 
   /**
    * Sends a message to a specific user.
-   * Delegates to the configured SseDistributor (defaults to local if none
-   * configured).
    *
-   * @param userId  target user ID
-   * @param content message content
+   * @param userId target user ID
+   * @param data   message data
    */
-  public void send(String userId, String content) {
-    sseDistributor.distribute(userId, content);
+  public void send(String userId, Object data) {
+    send(new SseMessage(userId, data));
+  }
+
+  /**
+   * Sends a message to multiple users.
+   *
+   * @param userIds target user IDs
+   * @param data    message data
+   */
+  public void send(Collection<String> userIds, Object data) {
+    SseMessage message = new SseMessage(data);
+    message.setUserIds(new HashSet<>(userIds));
+    send(message);
+  }
+
+  /**
+   * Sends a rich SSE message (with id, name, etc.) to specified users.
+   *
+   * @param message SSE message including target user IDs
+   */
+  public void send(SseMessage message) {
+    if (CollectionUtils.isEmpty(message.getUserIds())) {
+      log.warn("No target users specified for SSE message");
+      return;
+    }
+    sseDistributor.distribute(message);
   }
 
   /**
@@ -131,28 +157,39 @@ public class SseNotifier implements InitializingBean, DisposableBean {
    * Delegates to the configured SseDistributor (defaults to local if none
    * configured).
    *
-   * @param content message content
+   * @param data message data
    */
-  public void broadcast(String content) {
-    sseDistributor.broadcast(content);
+  public void broadcast(Object data) {
+    sseDistributor.broadcast(new SseMessage(data));
   }
 
   /**
-   * Sends a message to a user connected to this local instance.
-   * This method should be called by the SseDistributor implementation when a
-   * message is received.
+   * Broadcasts a richer SSE message to all users.
    *
-   * @param userId  target user ID
-   * @param content message content
+   * @param message SSE message
    */
-  public void sendLocal(String userId, String content) {
-    SseEmitter emitter = userEmitterCache.get(userId);
-    if (emitter != null) {
-      try {
-        emitter.send(content);
-      } catch (IOException e) {
-        log.error("Failed to send message to user: {}", userId, e);
-        removeUser(userId);
+  public void broadcast(SseMessage message) {
+    sseDistributor.broadcast(message);
+  }
+
+  /**
+   * Sends a message to users connected to this local instance.
+   *
+   * @param message message object containing target user IDs
+   */
+  public void sendLocal(SseMessage message) {
+    if (CollectionUtils.isEmpty(message.getUserIds())) {
+      return;
+    }
+    for (String userId : message.getUserIds()) {
+      SseEmitter emitter = userEmitterCache.get(userId);
+      if (emitter != null) {
+        try {
+          emitter.send(buildSseEvent(message));
+        } catch (IOException e) {
+          log.error("Failed to send message to user: {}", userId, e);
+          removeUser(userId);
+        }
       }
     }
   }
@@ -162,17 +199,31 @@ public class SseNotifier implements InitializingBean, DisposableBean {
    * This method should be called by the SseDistributor implementation when a
    * broadcast message is received.
    *
-   * @param content message content
+   * @param message message object
    */
-  public void broadcastLocal(String content) {
+  public void broadcastLocal(SseMessage message) {
     userEmitterCache.forEach((userId, emitter) -> {
       try {
-        emitter.send(content);
+        emitter.send(buildSseEvent(message));
       } catch (IOException e) {
         log.error("Failed to broadcast message to user: {}", userId, e);
         removeUser(userId);
       }
     });
+  }
+
+  private SseEmitter.SseEventBuilder buildSseEvent(SseMessage message) {
+    SseEmitter.SseEventBuilder builder = SseEmitter.event().data(message.getData());
+    if (message.getId() != null) {
+      builder.id(message.getId());
+    }
+    if (message.getName() != null) {
+      builder.name(message.getName());
+    }
+    if (message.getReconnectTime() != null) {
+      builder.reconnectTime(message.getReconnectTime());
+    }
+    return builder;
   }
 
   public void removeUser(String userId) {
@@ -201,5 +252,30 @@ public class SseNotifier implements InitializingBean, DisposableBean {
   @Override
   public void destroy() throws Exception {
     cleanupExecutor.shutdown();
+  }
+
+  @lombok.Data
+  @lombok.NoArgsConstructor
+  @lombok.AllArgsConstructor
+  public static class SseMessage {
+    private Set<String> userIds = new HashSet<>();
+    private String id;
+    private String name;
+    private Object data;
+    private Long reconnectTime;
+
+    public SseMessage(Object data) {
+      this.data = data;
+    }
+
+    public SseMessage(String userId, Object data) {
+      this.userIds.add(userId);
+      this.data = data;
+    }
+
+    public SseMessage addUserId(String userId) {
+      this.userIds.add(userId);
+      return this;
+    }
   }
 }
