@@ -40,7 +40,7 @@
         </repository>
     </distributionManagement>
     <properties>
-        <java.version>25</java.version>
+        <java.version>21</java.version>
         <maven.version>3.9.11</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring_boot_version>4.0.0</spring_boot_version>
