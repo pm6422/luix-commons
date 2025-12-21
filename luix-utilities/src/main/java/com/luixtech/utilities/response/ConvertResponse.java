@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * If the controller method is annotated with this annotation, the result of method will be converted by
- * {@link com.luixtech.springbootframework.controller.advice.ResponseConverterAdvice}
+ * {@code com.luixtech.springbootframework.controller.advice.ResponseConverterAdvice}
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
