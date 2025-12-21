@@ -67,17 +67,17 @@ public class SseNotifier implements InitializingBean, DisposableBean {
      *   &#64;Component
      *   public class KafkaSseDistributor implements SseNotifier.SseDistributor {
      *     &#64;Autowired
-     *     private KafkaTemplate<String, String> kafkaTemplate;
+     *     private KafkaTemplate&lt;String, String&gt; kafkaTemplate;
      *
      *     &#64;Override
      *     public void distribute(String userId, String content) {
-     *       Map<String, Object> message = Map.of("type", "UNICAST", "userId", userId, "content", content);
+     *       Map&lt;String, Object&gt; message = Map.of("type", "UNICAST", "userId", userId, "content", content);
      *       kafkaTemplate.send("sse-topic", JSON.toJSONString(message));
      *     }
      *
-     *     @Override
+     *     &#64;Override
      *     public void broadcast(String content) {
-     *       Map<String, Object> message = Map.of("type", "BROADCAST", "content", content);
+     *       Map&lt;String, Object&gt; message = Map.of("type", "BROADCAST", "content", content);
      *       kafkaTemplate.send("sse-topic", JSON.toJSONString(message));
      *     }
      *   }

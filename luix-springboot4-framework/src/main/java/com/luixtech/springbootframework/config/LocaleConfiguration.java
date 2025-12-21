@@ -9,7 +9,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 /**
  * Default LocaleResolver is {@link AcceptHeaderLocaleResolver}
- * Refer to {@link WebMvcAutoConfiguration.EnableWebMvcConfiguration#localeResolver()}
+ * Refer to {@link WebMvcAutoConfiguration.EnableWebMvcConfiguration}
  */
 @Configuration
 public class LocaleConfiguration implements WebMvcConfigurer {
