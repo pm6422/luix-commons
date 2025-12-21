@@ -32,10 +32,7 @@ public abstract class MaskingUtils {
         if (StringUtils.isBlank(id)) {
             return StringUtils.EMPTY;
         }
-        String paddedLast4 = StringUtils.leftPad(StringUtils.right(id, 4), StringUtils.length(id), '*');
-        String starPrefix = "*".repeat(3);
-        String tail = paddedLast4.startsWith(starPrefix) ? paddedLast4.substring(starPrefix.length()) : paddedLast4;
-        return StringUtils.left(id, 3).concat(tail);
+        return maskKeepPrefixAndSuffix(id, 3, 4);
     }
 
     /**
@@ -55,10 +52,7 @@ public abstract class MaskingUtils {
         if (StringUtils.isBlank(num)) {
             return StringUtils.EMPTY;
         }
-        String paddedLast4 = StringUtils.leftPad(StringUtils.right(num, 4), StringUtils.length(num), '*');
-        String starPrefix = "*".repeat(3);
-        String tail = paddedLast4.startsWith(starPrefix) ? paddedLast4.substring(starPrefix.length()) : paddedLast4;
-        return StringUtils.left(num, 3).concat(tail);
+        return maskKeepPrefixAndSuffix(num, 3, 4);
 
     }
 
@@ -99,10 +93,7 @@ public abstract class MaskingUtils {
         if (StringUtils.isBlank(cardNum)) {
             return StringUtils.EMPTY;
         }
-        String paddedLast4 = StringUtils.leftPad(StringUtils.right(cardNum, 4), StringUtils.length(cardNum), '*');
-        String starPrefix = "*".repeat(6);
-        String tail = paddedLast4.startsWith(starPrefix) ? paddedLast4.substring(starPrefix.length()) : paddedLast4;
-        return StringUtils.left(cardNum, 6).concat(tail);
+        return maskKeepPrefixAndSuffix(cardNum, 6, 4);
     }
 
     /**
@@ -113,5 +104,24 @@ public abstract class MaskingUtils {
             return StringUtils.EMPTY;
         }
         return StringUtils.rightPad(StringUtils.left(code, 2), StringUtils.length(code), "*");
+    }
+
+    private static String maskKeepPrefixAndSuffix(final String text, final int prefixLength, final int suffixLength) {
+        if (StringUtils.isBlank(text)) {
+            return StringUtils.EMPTY;
+        }
+
+        final int length = StringUtils.length(text);
+        final int safePrefixLength = Math.max(prefixLength, 0);
+        final int safeSuffixLength = Math.max(suffixLength, 0);
+
+        if (length <= safePrefixLength + safeSuffixLength) {
+            return text;
+        }
+
+        final int maskLength = length - safePrefixLength - safeSuffixLength;
+        return StringUtils.left(text, safePrefixLength)
+                .concat("*".repeat(maskLength))
+                .concat(StringUtils.right(text, safeSuffixLength));
     }
 }
