@@ -9,12 +9,16 @@ import java.util.concurrent.atomic.AtomicInteger;
  * The idea comes from codes of tomcat org.apache.catalina.core..StandardThreadExecutor
  *
  * {@link NetworkThreadPoolExecutor}
- * Execution strategy：运行线程直到maximumPoolSize后才将新任务加入workQueue中，如果workQueue满了就reject。
- * 当突然有个流量高峰的时候，能够快速的达到最大线程数，尽量把任务处理完，处理不完才入队列。
+ * Execution strategy: Keep creating threads until reaching maximumPoolSize, then enqueue new tasks into workQueue.
+ * If workQueue is full, reject the task.
+ * This helps quickly ramp up to the maximum thread count during a sudden traffic spike and process tasks first;
+ * only tasks that cannot be processed immediately will be queued.
  * Applicable scenario：Scenarios where business processing requires remote resources
  *
  * {@link java.util.concurrent.ThreadPoolExecutor}
- * Execution strategy：运行线程大于corePoolSize时将新任务加入workQueue中，workQueue满后再扩充线程到maximumPoolSize，如果已经到了maximumPoolSize就reject。
+ * Execution strategy: When the pool size is greater than corePoolSize, enqueue new tasks into workQueue first.
+ * Only when workQueue is full will it expand the pool up to maximumPoolSize; if it is already at maximumPoolSize,
+ * reject the task.
  * Applicable scenario：CPU intensive applications (e.g. All operations performed inside runnable are In-JVM, memory copy, or compute. etc.)
  * </pre>
  */

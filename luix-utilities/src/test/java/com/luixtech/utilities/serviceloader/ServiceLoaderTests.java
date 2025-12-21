@@ -10,7 +10,7 @@ public class ServiceLoaderTests {
 
     @Test
     public void testSingletonInitialization() {
-        // 单例模式下只会构造一次实例
+        // In singleton mode, the instance is constructed only once.
         assertThat(ServiceLoader.forClass(SpiSingletonInterface.class)
                 .load("singleton").spiHello()).isEqualTo(1);
 
@@ -20,7 +20,7 @@ public class ServiceLoaderTests {
 
     @Test
     public void testPrototypeInitialization() {
-        // 多例模式下在每次获取的时候进行实例化
+        // In prototype mode, a new instance is created on each load.
         assertThat(ServiceLoader.forClass(SpiPrototypeInterface.class)
                 .load("prototype").spiHello()).isEqualTo(1);
         assertThat(ServiceLoader.forClass(SpiPrototypeInterface.class)
@@ -29,7 +29,7 @@ public class ServiceLoaderTests {
 
     @Test
     public void testChineseCharacterLoad() {
-        // 单例模式下只会构造一次实例
+        // Verify that a service name with non-ASCII characters can be loaded.
         assertThat(ServiceLoader.forClass(SpiSingletonInterface.class)
                 .load("单例").spiHello()).isEqualTo(1);
     }

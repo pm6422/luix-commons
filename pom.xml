@@ -119,6 +119,7 @@
                 <configuration>
                     <source>${java.version}</source>
                     <encoding>UTF-8</encoding>
+                    <doclint>none</doclint>
                     <failOnError>false</failOnError>
                 </configuration>
             </plugin>

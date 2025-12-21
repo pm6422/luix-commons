@@ -48,9 +48,9 @@ public class AsyncConfiguration implements AsyncConfigurer, WebMvcConfigurer {
     }
 
     /**
-     * 暂时搞不清楚作用
+     * Not sure what this is used for yet.
      *
-     * @return
+     * @return task scheduler
      */
     @Bean
     public ThreadPoolTaskScheduler taskScheduler() {

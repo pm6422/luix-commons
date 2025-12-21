@@ -35,11 +35,11 @@ public abstract class ByteUtils {
 
 
     /**
-     * 把long类型的value转为8个byte字节，放到byte数组的off开始的位置，高位在前
+     * Convert a long value to 8 bytes and put them into the byte array starting at the given offset (big-endian).
      *
-     * @param value
-     * @param bytes
-     * @param off
+     * @param value long value
+     * @param bytes target byte array
+     * @param off   start offset
      */
     public static void long2bytes(long value, byte[] bytes, int off) {
         bytes[off + 7] = (byte) value;
@@ -53,10 +53,10 @@ public abstract class ByteUtils {
     }
 
     /**
-     * 把byte数组中off开始的8个字节，转为long类型，高位在前
+     * Convert 8 bytes starting at the given offset in a byte array to a long value (big-endian).
      *
-     * @param bytes
-     * @param off
+     * @param bytes source byte array
+     * @param off   start offset
      */
     public static long bytes2long(byte[] bytes, int off) {
         return ((bytes[off + 7] & 0xFFL)) + ((bytes[off + 6] & 0xFFL) << 8) + ((bytes[off + 5] & 0xFFL) << 16)
@@ -65,11 +65,11 @@ public abstract class ByteUtils {
     }
 
     /**
-     * 把int类型的value转为4个byte字节，放到byte数组的off开始的位置，高位在前
+     * Convert an int value to 4 bytes and put them into the byte array starting at the given offset (big-endian).
      *
-     * @param value
-     * @param bytes
-     * @param off
+     * @param value int value
+     * @param bytes target byte array
+     * @param off   start offset
      */
     public static void int2bytes(int value, byte[] bytes, int off) {
         bytes[off + 3] = (byte) value;
@@ -79,21 +79,21 @@ public abstract class ByteUtils {
     }
 
     /**
-     * 把byte数组中off开始的4个字节，转为int类型，高位在前
+     * Convert 4 bytes starting at the given offset in a byte array to an int value (big-endian).
      *
-     * @param bytes
-     * @param off
+     * @param bytes source byte array
+     * @param off   start offset
      */
     public static int bytes2int(byte[] bytes, int off) {
         return ((bytes[off + 3] & 0xFF)) + ((bytes[off + 2] & 0xFF) << 8) + ((bytes[off + 1] & 0xFF) << 16) + ((bytes[off]) << 24);
     }
 
     /**
-     * 把short类型的value转为2个byte字节，放到byte数组的off开始的位置，高位在前
+     * Convert a short value to 2 bytes and put them into the byte array starting at the given offset (big-endian).
      *
-     * @param value
-     * @param bytes
-     * @param off
+     * @param value short value
+     * @param bytes target byte array
+     * @param off   start offset
      */
     public static void short2bytes(short value, byte[] bytes, int off) {
         bytes[off + 1] = (byte) value;
@@ -101,10 +101,10 @@ public abstract class ByteUtils {
     }
 
     /**
-     * 把byte数组中off开始的2个字节，转为short类型，高位在前
+     * Convert 2 bytes starting at the given offset in a byte array to a short value (big-endian).
      *
-     * @param b
-     * @param off
+     * @param b   source byte array
+     * @param off start offset
      */
     public static short bytes2short(byte[] b, int off) {
         return (short) (((b[off + 1] & 0xFF)) + ((b[off] & 0xFF) << 8));

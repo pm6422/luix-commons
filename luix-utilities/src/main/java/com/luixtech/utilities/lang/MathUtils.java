@@ -37,9 +37,11 @@ public abstract class MathUtils {
     }
 
     /**
-     * 通过二进制位操作将原先的整数转化为非负整数
-     * 当原先的整数是0或正数时返回本身
-     * 当原先的整数是负数时通过二进制首位取反转化为正数或0(Integer.MIN_VALUE将转换为0)
+     * Convert an integer to a non-negative integer using bitwise operations.
+     * <p>
+     * If the input is 0 or positive, returns itself.
+     * If the input is negative, clears the sign bit to convert it into a positive value or 0
+     * (Integer.MIN_VALUE will be converted to 0).
      *
      * @param val integer
      * @return positive integer or zero
@@ -49,7 +51,7 @@ public abstract class MathUtils {
     }
 
     /**
-     * 通过二进制位操作将原先的整数转化为一定值范围内的非负整数
+     * Convert an integer to a non-negative integer within a fixed range using bitwise operations.
      *
      * @param val integer
      * @return positive integer or zero with range [0-16777215]

@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 public abstract class MaskingUtils {
 
     /**
-     * [中文姓名] 只显示第一个汉字，其他隐藏为2个星号<例子：李**>
+     * [Chinese name] Show only the first character and mask the rest with asterisks (e.g. Li**).
      */
     public static String maskChineseName(final String lastName, final String firstName) {
         if (StringUtils.isBlank(lastName) || StringUtils.isBlank(firstName)) {
@@ -15,7 +15,7 @@ public abstract class MaskingUtils {
     }
 
     /**
-     * [中文姓名] 只显示第一个汉字，其他隐藏为2个星号<例子：李**>
+     * [Chinese name] Show only the first character and mask the rest with asterisks (e.g. Li**).
      */
     public static String maskChineseName(final String fullName) {
         if (StringUtils.isBlank(fullName)) {
@@ -26,7 +26,7 @@ public abstract class MaskingUtils {
     }
 
     /**
-     * [身份证号] 显示最后四位，其他隐藏。共计18位或者15位。<例子：420**********5762>
+     * [ID card number] Show the last 4 characters and mask the rest (15 or 18 characters). (e.g. 420**********5762).
      */
     public static String maskIdCard(final String id) {
         if (StringUtils.isBlank(id)) {
@@ -39,7 +39,7 @@ public abstract class MaskingUtils {
     }
 
     /**
-     * [固定电话] 后四位，其他隐藏<例子：****1234>
+     * [Landline] Show the last 4 digits and mask the rest (e.g. ****1234).
      */
     public static String maskLandlinePhone(final String num) {
         if (StringUtils.isBlank(num)) {
@@ -49,7 +49,7 @@ public abstract class MaskingUtils {
     }
 
     /**
-     * [手机号码] 前三位，后四位，其他隐藏<例子:138******1234>
+     * [Mobile phone] Show the first 3 digits and last 4 digits and mask the rest (e.g. 138******1234).
      */
     public static String maskMobilePhone(final String num) {
         if (StringUtils.isBlank(num)) {
@@ -63,7 +63,7 @@ public abstract class MaskingUtils {
     }
 
     /**
-     * [地址] 只显示到地区，不显示详细地址；我们要对个人信息增强保护<例子：北京市海淀区****>
+     * [Address] Show only the area and mask the detailed address (e.g. Area****).
      *
      * @param address                  address
      * @param sensitiveCharacterLength sensitive character length
@@ -77,7 +77,7 @@ public abstract class MaskingUtils {
     }
 
     /**
-     * [电子邮箱] 邮箱前缀仅显示第一个字母，前缀其他隐藏，用星号代替，@及后面的地址显示<例子:g**@163.com>
+     * [Email] Show only the first character of the local-part; mask the rest, and keep the domain (e.g. g**@163.com).
      */
     public static String maskEmail(final String email) {
         if (StringUtils.isBlank(email)) {
@@ -93,7 +93,7 @@ public abstract class MaskingUtils {
     }
 
     /**
-     * [银行卡号] 前六位，后四位，其他用星号隐藏每位1个星号<例子:6222600**********1234>
+     * [Bank card number] Show the first 6 digits and last 4 digits; mask the rest (e.g. 6222600**********1234).
      */
     public static String maskBankCard(final String cardNum) {
         if (StringUtils.isBlank(cardNum)) {
@@ -106,7 +106,7 @@ public abstract class MaskingUtils {
     }
 
     /**
-     * [公司开户银行联号] 公司开户银行联行号，显示前两位，其他用星号隐藏，每位1个星号<例子:12********>
+     * [CNAPS code] Show the first 2 digits and mask the rest (e.g. 12********).
      */
     public static String maskCnapsCode(final String code) {
         if (StringUtils.isBlank(code)) {

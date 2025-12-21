@@ -5,7 +5,7 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig;
 
 /**
- * Refer to <a href="https://www.toutiao.com/article/7100736419382968868/?log_from=befad6de6e9a9_1676367278980">SpringBoot集成Jasypt加密敏感信息</a>
+ * Refer to <a href="https://www.toutiao.com/article/7100736419382968868/?log_from=befad6de6e9a9_1676367278980">Spring Boot integrates Jasypt to encrypt sensitive information</a>
  */
 public abstract class JasyptEncryptUtils {
     public static final String DEFAULT_ALGORITHM  = "PBEWithMD5AndDES";
