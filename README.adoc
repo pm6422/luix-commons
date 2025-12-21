@@ -16,13 +16,13 @@ Luix Commons consists of three main components:
 == Requirements
 Before you can build this project, you must install JDK on your machine. You can install JDK by https://sdkman.io/install[SDK Man]. e.g.
 ```bash
-sdk install java 11.0.20-tem
+sdk install java 21.0.1-amzn
 ```
-NOTE: Java compatability: JDK 11 or higher
+NOTE: Java compatability: JDK 21 or higher
 
 [[dependencies]]
 == Dependencies
-- spring-boot 2.7.1
+- spring-boot 4.0.0
 
 [[build]]
 == Build
